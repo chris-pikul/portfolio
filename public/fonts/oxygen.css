@@ -1,0 +1,9 @@
+/* Only the 400 weight font */
+@font-face {
+  font-family: 'Oxygen';
+  src: url('/fonts/oxygen/oxygen-400.woff2') format('woff2'),
+      url('/fonts/oxygen/oxygen-400.woff') format('woff')
+      url('/fonts/oxygen/oxygen-400.ttf') format('truetype');
+  font-display: fallback;
+  font-weight: 400;
+}

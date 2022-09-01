@@ -1,0 +1,41 @@
+@use './_base.scss' as *;
+
+@import './reset.scss';
+
+/* Font Loading Strategy */
+:root {
+  --font-common: Arial, Helvetica, sans-serif;
+  --font-title: Arial, Helvetica, sans-serif;
+  --font-code: monospace;
+}
+:root.fonts-loaded {
+  --font-common: 'Exo-2', Arial, Helvetica, sans-serif;
+  --font-title: 'Oxygen', Arial, Helvetica, sans-serif;
+  --font-code: 'Source Code Pro', monospace;
+
+  @supports (font-variation-settings: normal) {
+    --font-common: 'Exo-2 VF', Arial, Helvetica, sans-serif;
+  }
+}
+
+body {
+  @include font_common();
+  font-size: 15px;
+}
+
+/* A11y hiding */
+.hidden {
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px;
+  width: 1px; 
+  margin: -1px;
+  padding: 0;
+  border: 0; 
+}
+
+h1 {
+  @include font_title();
+  font-size: 2em;
+}
