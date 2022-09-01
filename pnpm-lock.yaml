@@ -4,9 +4,8 @@ specifiers:
   '@astrojs/solid-js': ^1.1.0
   '@babel/core': |
     >=7.0.0 <8.0.0
-  '@fontsource/exo-2': ^4.5.9
-  '@fontsource/source-code-pro': ^4.5.12
   astro: ^1.1.2
+  astro-seo: ^0.6.0
   sass: ^1.54.7
   solid-js: ^1.4.3
   typescript: ^4.8.2
@@ -15,12 +14,11 @@ specifiers:
 
 dependencies:
   '@babel/core': 7.18.13
-  '@fontsource/exo-2': 4.5.9
-  '@fontsource/source-code-pro': 4.5.12
 
 devDependencies:
   '@astrojs/solid-js': 1.1.0_6oiwpgus3xazyyknhv4ig6ur3e
   astro: 1.1.2_sass@1.54.7
+  astro-seo: 0.6.0
   sass: 1.54.7
   solid-js: 1.5.3
   typescript: 4.8.2
@@ -464,14 +462,6 @@ packages:
     dev: true
     optional: true
 
-  /@fontsource/exo-2/4.5.9:
-    resolution: {integrity: sha512-5+u82a8pm/5sm1Xz+1wJMbAHOWerl0/YABYNxMIf2wFN4+W3+fKf4XeEGjvTnm6LYeX7yor5TrA/bcX3hnqx+Q==}
-    dev: false
-
-  /@fontsource/source-code-pro/4.5.12:
-    resolution: {integrity: sha512-6r1dykX7SH1Orm7xUh4sA8pjM1uNPKo9fV+y9/wxS+y/fwN+sMf6b1jHDUTmfEtw1OxlTaHGrr2I7dGeNqxdPA==}
-    dev: false
-
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
     engines: {node: '>=6.0.0'}
@@ -713,6 +703,10 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       tslib: 2.4.0
+    dev: true
+
+  /astro-seo/0.6.0:
+    resolution: {integrity: sha512-nR+dJlAyQhX6s0oAmbBqPq3KCZax/zVAerFsclGiJQ2znOkS/7L+RGjziS4M9Q3OQxm3FMfqIKHp9Ns73Q81ww==}
     dev: true
 
   /astro/1.1.2_sass@1.54.7:
