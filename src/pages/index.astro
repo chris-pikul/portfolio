@@ -6,6 +6,40 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 ---
 <BaseLayout>
-  <h1>Hello, I'm Chris Pikul</h1>
-  <p>How are you doing?</p> 
+  <section id='hero'>
+    <h2>Hello, my name is</h2>
+    <h1 class='fill-text'>Chris Pikul</h1>
+    <h3>and I'm a developer</h3>
+  </section>
 </BaseLayout>
+
+<style lang="scss">
+  #hero {
+    background: blue;
+    padding: 1rem;
+
+    h1 {
+      font-size: 14vw;
+      font-size: calc((100vw - 2rem) / 6.35);
+    }
+
+    h2 {
+      font-size: 6vw;
+      position: relative;
+      left: 0.15ch;
+    }
+
+    h3 {
+      font-size: 5vw;
+      text-align: right;
+      position: relative;
+      right: 0.15ch;
+    }
+  }
+</style>
+
+<script>
+  import FillText from '@scripts/FillText';
+
+  FillText('.fill-text');
+</script>

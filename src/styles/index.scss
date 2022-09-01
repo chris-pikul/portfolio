@@ -35,7 +35,7 @@ body {
   border: 0; 
 }
 
-h1 {
+h1, h2, h3 {
   @include font_title();
   font-size: 2em;
 }
