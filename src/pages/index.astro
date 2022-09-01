@@ -1,51 +1,11 @@
 ---
-import '@styles/index.scss';
+/*
+ * Index/Home page
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
 
-import Counter from '@components/counter.solid';
-
-console.log('Hello world from backend');
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Chris Pikul</title>
-
-  <link rel='preload' as='style' href='/fonts/exo-2.css' />
-  <link rel='stylesheet' href='/fonts/exo-2.css' media='print' onload='this.media = all' />
-
-  <link rel='preload' as='style' href='/fonts/oxygen.css' />
-  <link rel='stylesheet' href='/fonts/oxygen.css' media='print' onload='this.media = all' />
-  
-  <noscript>
-    <link rel='stylesheet' href='/fonts/exo-2.css' />
-    <link rel='stylesheet' href='/fonts/oxygen.css' />
-  </noscript>
-</head>
-<body class='no-js'>
-  <div aria-visibility="hidden" class="hidden" style="font-family: 'Exo-2'">&nbsp;</div>
-  <h1>Hello World!</h1>
-  <Counter client:load />
-  <script is:inline>
-    document.body.classList.remove('no-js');
-  </script>
-</body>
-</html>
-<script>
-  // Web-font fallback
-  (() => {
-    const markFontsLoaded = () => document.documentElement.classList.add('fonts-loaded');
-    if(sessionStorage && sessionStorage.fontsLoaded) {
-      markFontsLoaded();
-    } else if('fonts' in document) {
-      Promise.all([
-        document.fonts.load('300 1em "Exo-2"'),
-        document.fonts.load('400 1em Oxygen'),
-      ]).then(() => {
-        if(sessionStorage)
-          sessionStorage.fontsLoaded = true;
-      }).catch(err => {
-        console.error(`error loading web-fonts: ${err}`);
-      }).finally(markFontsLoaded);
-    }
-  })();
-</script>
+<BaseLayout>
+  <h1>Hello, I'm Chris Pikul</h1>
+  <p>How are you doing?</p> 
+</BaseLayout>
