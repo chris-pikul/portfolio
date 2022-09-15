@@ -1,9 +1,26 @@
-/* Only the 400 weight font */
 @font-face {
   font-family: 'Oxygen';
-  src: url('/fonts/oxygen/oxygen-400.woff2') format('woff2'),
-      url('/fonts/oxygen/oxygen-400.woff') format('woff')
-      url('/fonts/oxygen/oxygen-400.ttf') format('truetype');
-  font-display: fallback;
-  font-weight: 400;
+  src: url('/fonts/oxygen/oxygen-regular.woff2') format('woff2'),
+      url('/fonts/oxygen/oxygen-regular.woff') format('woff'),
+      url('/fonts/oxygen/oxygen-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  src: url('/fonts/oxygen/oxygen-light.woff2') format('woff2'),
+      url('/fonts/oxygen/oxygen-light.woff') format('woff'),
+      url('/fonts/oxygen/oxygen-light.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  src: url('/fonts/oxygen/oxygen-bold.woff2') format('woff2'),
+      url('/fonts/oxygen/oxygen-bold.woff') format('woff'),
+      url('/fonts/oxygen/oxygen-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }

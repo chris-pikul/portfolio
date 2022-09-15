@@ -32,8 +32,9 @@ export default function FillText(selector:(HTMLElement | HTMLElement[] | string)
     if(!el.parentElement)
       return console.warn(`FillText operating on ${el} does not have a parent element`);
     
+    const parTWidth = el.parentElement.getBoundingClientRect().width;
     const parStyle = window.getComputedStyle(el.parentElement);
-    const parWidth = el.parentElement.clientWidth
+    const parWidth = parTWidth
       - parseFloat(parStyle.paddingLeft)
       - parseFloat(parStyle.paddingRight);
 
@@ -44,6 +45,8 @@ export default function FillText(selector:(HTMLElement | HTMLElement[] | string)
     let newSize = Math.max(opts.minFontSize, Math.min((
       ((parWidth / ourWidth) * ourFS) * opts.compression
     ), opts.maxFontSize));
+
+    console.info(`recalc to parTWidth=${parTWidth} parWidth=${parWidth} ourWidth=${ourWidth} ourFS=${ourFS} newSize=${newSize}`);
 
     if(typeof opts.calculator === 'function')
       newSize = opts.calculator(parWidth, newSize);
@@ -63,11 +66,13 @@ export default function FillText(selector:(HTMLElement | HTMLElement[] | string)
   for(const el of els) {
     el.style.display = 'inline-block';
     el.style.whiteSpace = 'nowrap';  
+    el.style.width = 'fit-content';
   }
 
   const recalc = debounce(() => els.forEach((el:HTMLElement) => fill(el)), 100);
 
   window.addEventListener('resize', recalc, null);
   window.addEventListener('orientationchange', recalc, null);
-  recalc();
+
+  setTimeout(recalc, 0);
 }

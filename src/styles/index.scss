@@ -1,11 +1,12 @@
 @use './_base.scss' as *;
+@use './colors' as *;
 
 @import './reset.scss';
 
 /* Font Loading Strategy */
 :root {
   --font-common: Arial, Helvetica, sans-serif;
-  --font-title: Arial, Helvetica, sans-serif;
+  --font-title: 'Oxygen', Arial, Helvetica, sans-serif;
   --font-code: monospace;
 }
 :root.fonts-loaded {
@@ -14,11 +15,68 @@
   --font-code: 'Source Code Pro', monospace;
 
   @supports (font-variation-settings: normal) {
-    --font-common: 'Exo-2 VF', Arial, Helvetica, sans-serif;
+    --font-common: 'Exo-2 VF', 'Exo-2', Arial, Helvetica, sans-serif;
   }
 }
 
+/* Color Palette Injection */
+:root {
+  --white: #{$clr-white};
+  --shade-100: #{$clr-shade-100};
+  --shade-200: #{$clr-shade-100};
+  --shade-300: #{$clr-shade-100};
+  --shade-400: #{$clr-shade-100};
+  --shade-500: #{$clr-shade-100};
+  --shade-600: #{$clr-shade-100};
+  --shade-700: #{$clr-shade-100};
+  --shade-800: #{$clr-shade-100};
+  --shade-900: #{$clr-shade-100};
+  --black: #{$clr-black};
+
+  --primary-100: #{$clr-primary-100};
+  --primary-200: #{$clr-primary-200};
+  --primary-300: #{$clr-primary-300};
+  --primary-400: #{$clr-primary-400};
+  --primary-500: #{$clr-primary-500};
+  --primary-600: #{$clr-primary-600};
+  --primary-700: #{$clr-primary-700};
+
+  --secondary-100: #{$clr-secondary-100};
+  --secondary-200: #{$clr-secondary-200};
+  --secondary-300: #{$clr-secondary-300};
+  --secondary-400: #{$clr-secondary-400};
+  --secondary-500: #{$clr-secondary-500};
+  --secondary-600: #{$clr-secondary-600};
+  --secondary-700: #{$clr-secondary-700};
+
+  --tertiary-100: #{$clr-tertiary-100};
+  --tertiary-200: #{$clr-tertiary-200};
+  --tertiary-300: #{$clr-tertiary-300};
+  --tertiary-400: #{$clr-tertiary-400};
+  --tertiary-500: #{$clr-tertiary-500};
+  --tertiary-600: #{$clr-tertiary-600};
+  --tertiary-700: #{$clr-tertiary-700};
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 body {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--white);
+  color: var(--black);
+
   @include font_common();
   font-size: 15px;
 }
@@ -38,4 +96,54 @@ body {
 h1, h2, h3 {
   @include font_title();
   font-size: 2em;
+}
+
+section {
+  display: flex;
+  flex-flow: column nowrap;
+  
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+
+  @include font_common();
+  font-size: 1rem;
+
+  &.white {
+    background: $clr-white;
+    color: $clr-black;
+  }
+
+  &.primary {
+    background: $clr-primary-400;
+    color: $clr-white;
+  }
+
+  &.secondary {
+    background: $clr-secondary-400;
+    color: $clr-white;
+  }
+
+  &.tertiary {
+    background: $clr-tertiary-400;
+    color: $clr-black;
+  }
+
+  p:not(:last-of-type) {
+    margin-bottom: 1em;
+  }
+}
+
+footer#main-footer {
+  display: flex;
+  flex-flow: column nowrap;
+  
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  background: $clr-black;
+
+  @include font_common();
+  font-size: 1rem;
+  color: $clr-white;
 }
