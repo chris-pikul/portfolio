@@ -59,8 +59,7 @@
 }
 
 html {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -73,7 +72,6 @@ body {
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-  min-height: 100vh;
   margin: 0;
   padding: 0;
 
