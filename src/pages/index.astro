@@ -6,6 +6,10 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Section from '@components/Section.astro';
 import Transition from '@components/Transition.astro';
 
+import Articles from '../article-list.json';
+import ArticleCard from '@components/ArticleCard.astro';
+const topArticles = Articles.slice(0, 3);
+
 ---
 <BaseLayout>
   <header id='hero'>
@@ -23,12 +27,16 @@ import Transition from '@components/Transition.astro';
     <p>This site is a culmination of my projects, any written articles that I have produced, and represents a portfolio piece on it's own.</p>
   </Section>
 
-  <Section title='Projects' color='primary' next='secondary'>
+  <Section title='Projects' titleHREF='/projects/' color='primary' next='secondary'>
     <p>This is a list of some of the works I've done, or have been a part of. Most of it is featured on GitHub under my username <a href='https://github.com/chris-pikul'>"chris-pikul"</a>.</p>
   </Section>
 
   <Section title='Articles' titleHREF='/articles/' color='secondary' next='black' alternate>
     <p>I've tried, and will continue to, write articles about things I find interesting or to help others on topics that are less-than-commonly written about.</p>
+    <p>Here are some selections to read, the rest are listed <a href='/articles/' aria-label='Page featuring all the articles'>here on the Articles page</a>.</p>
+    <ul class='article-list'>
+      { topArticles.map(article => <li><ArticleCard {...article} /></li>) }
+    </ul>
   </Section>
   
 </BaseLayout>
@@ -94,6 +102,31 @@ import Transition from '@components/Transition.astro';
       vertical-align: middle;
       white-space: nowrap;
       color: $clr-shade-700;
+    }
+  }
+
+  .article-list {
+    display: flex;
+    flex-flow: column nowrap;
+    list-style: none;
+
+    li {
+      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @media screen and (min-device-width: 1440px) {
+    .article-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      li {
+        margin-bottom: 0;
+      }
     }
   }
 </style>

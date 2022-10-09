@@ -19,15 +19,44 @@
   <Transition from='white' to='primary' />
 
   <Section title='Showcase' color='primary' next='secondary'>
-    { top.map(article => <ArticleCard {...article} />) }
+    <ul class='article-list'>
+      { top.map(article => <li><ArticleCard {...article} /></li>) }
+    </ul>
   </Section>
 
   <Section title='All Articles' color='secondary'>
-    { all.map(article => <ArticleCard {...article} />) }
+    <ul class='article-list'>
+      { all.map(article => <li><ArticleCard {...article} /></li>) }
+    </ul>
   </Section>
 </GeneralLayout>
 
 <style lang="scss">
   @use '../../styles/_base' as *;
   @use '../../styles/_colors' as *;
+
+  .article-list {
+    display: flex;
+    flex-flow: column nowrap;
+    list-style: none;
+
+    li {
+      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @media screen and (min-device-width: 1440px) {
+    .article-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      li {
+        margin-bottom: 0;
+      }
+    }
+  }
 </style>
