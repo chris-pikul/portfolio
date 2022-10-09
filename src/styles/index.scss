@@ -23,14 +23,14 @@
 :root {
   --white: #{$clr-white};
   --shade-100: #{$clr-shade-100};
-  --shade-200: #{$clr-shade-100};
-  --shade-300: #{$clr-shade-100};
-  --shade-400: #{$clr-shade-100};
-  --shade-500: #{$clr-shade-100};
-  --shade-600: #{$clr-shade-100};
-  --shade-700: #{$clr-shade-100};
-  --shade-800: #{$clr-shade-100};
-  --shade-900: #{$clr-shade-100};
+  --shade-200: #{$clr-shade-200};
+  --shade-300: #{$clr-shade-300};
+  --shade-400: #{$clr-shade-400};
+  --shade-500: #{$clr-shade-500};
+  --shade-600: #{$clr-shade-600};
+  --shade-700: #{$clr-shade-700};
+  --shade-800: #{$clr-shade-800};
+  --shade-900: #{$clr-shade-900};
   --black: #{$clr-black};
 
   --primary-100: #{$clr-primary-100};
@@ -64,6 +64,9 @@ html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+
+  @include font_common();
+  font-size: 20px;
 }
 
 body {
@@ -78,7 +81,7 @@ body {
   color: var(--black);
 
   @include font_common();
-  font-size: 15px;
+  font-size: 20px;
 }
 
 /* A11y hiding */
@@ -95,43 +98,71 @@ body {
 
 h1, h2, h3 {
   @include font_title();
-  font-size: 2em;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.3rem; }
+
+b { font-weight: 500; }
+
+.white {
+  background: $clr-white;
+  color: $clr-black;
+
+  --rel-background: #{ $clr-white};
+  --rel-color: #{ $clr-black };
+  --rel-shade-100: #{ $clr-shade-100 };
+  --rel-shade-200: #{ $clr-shade-200 };
+  --rel-shade-300: #{ $clr-shade-300 };
+  --rel-shade-400: #{ $clr-shade-400 };
+  --rel-shade-500: #{ $clr-shade-500 };
+  --rel-shade-600: #{ $clr-shade-600 };
+  --rel-shade-700: #{ $clr-shade-700 };
 }
 
-section {
-  display: flex;
-  flex-flow: column nowrap;
-  
-  position: relative;
-  width: 100%;
-  padding: 1rem;
+.primary {
+  background: $clr-primary-400;
+  color: $clr-white;
 
-  @include font_common();
-  font-size: 1rem;
+  --rel-background: #{ $clr-primary-400 };
+  --rel-color: #{ $clr-white };
+  --rel-shade-100: #{ $clr-primary-700 };
+  --rel-shade-200: #{ $clr-primary-600 };
+  --rel-shade-300: #{ $clr-primary-500 };
+  --rel-shade-400: #{ $clr-primary-400 };
+  --rel-shade-500: #{ $clr-primary-300 };
+  --rel-shade-600: #{ $clr-primary-200 };
+  --rel-shade-700: #{ $clr-primary-100 };
+}
 
-  &.white {
-    background: $clr-white;
-    color: $clr-black;
-  }
+.secondary {
+  background: $clr-secondary-400;
+  color: $clr-white;
 
-  &.primary {
-    background: $clr-primary-400;
-    color: $clr-white;
-  }
+  --rel-background: #{ $clr-secondary-400 };
+  --rel-color: #{ $clr-white };
+  --rel-shade-100: #{ $clr-secondary-700 };
+  --rel-shade-200: #{ $clr-secondary-600 };
+  --rel-shade-300: #{ $clr-secondary-500 };
+  --rel-shade-400: #{ $clr-secondary-400 };
+  --rel-shade-500: #{ $clr-secondary-300 };
+  --rel-shade-600: #{ $clr-secondary-200 };
+  --rel-shade-700: #{ $clr-secondary-100 };
+}
 
-  &.secondary {
-    background: $clr-secondary-400;
-    color: $clr-white;
-  }
+.tertiary {
+  background: $clr-tertiary-400;
+  color: $clr-black;
 
-  &.tertiary {
-    background: $clr-tertiary-400;
-    color: $clr-black;
-  }
-
-  p:not(:last-of-type) {
-    margin-bottom: 1em;
-  }
+  --rel-background: #{ $clr-tertiary-400 };
+  --rel-color: #{ $clr-black };
+  --rel-shade-100: #{ $clr-tertiary-100 };
+  --rel-shade-200: #{ $clr-tertiary-200 };
+  --rel-shade-300: #{ $clr-tertiary-300 };
+  --rel-shade-400: #{ $clr-tertiary-400 };
+  --rel-shade-500: #{ $clr-tertiary-500 };
+  --rel-shade-600: #{ $clr-tertiary-600 };
+  --rel-shade-700: #{ $clr-tertiary-700 };
 }
 
 footer#main-footer {

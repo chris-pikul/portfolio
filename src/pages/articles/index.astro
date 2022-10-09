@@ -1,0 +1,33 @@
+---
+/*
+ * Index for articles, that is separate from the main home-page.
+ * This is mostly for site-map fill out
+ */
+ import GeneralLayout from '@layouts/GeneralLayout.astro';
+ import Section from '@components/Section.astro';
+ import Transition from '@components/Transition.astro';
+ import ArticleCard from '@components/ArticleCard.astro';
+
+ import Articles from '../../article-list.json';
+
+ const top = Articles.slice(0, 3);
+ const all = Articles.sort((a, b) => (new Date(b.timestamp)).getTime() - (new Date(a.timestamp)).getTime() );
+---
+<GeneralLayout title='Articles'>
+  <p slot='hero-content'>Here are some articles and devlogs I've written</p>
+
+  <Transition from='white' to='primary' />
+
+  <Section title='Showcase' color='primary' next='secondary'>
+    { top.map(article => <ArticleCard {...article} />) }
+  </Section>
+
+  <Section title='All Articles' color='secondary'>
+    { all.map(article => <ArticleCard {...article} />) }
+  </Section>
+</GeneralLayout>
+
+<style lang="scss">
+  @use '../../styles/_base' as *;
+  @use '../../styles/_colors' as *;
+</style>

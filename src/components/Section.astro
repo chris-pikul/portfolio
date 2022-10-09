@@ -1,0 +1,53 @@
+---
+import Transition from '@components/Transition.astro';
+
+const color:string = Astro.props.color ?? 'white';
+const next:string = Astro.props.next ?? 'black';
+---
+<section class:list={[ 'color-section', color ]}>
+  <div class='content-pad'>
+    { Astro.props.title && <h2 class='section-title'>{ Astro.props.title }</h2> }
+
+    <slot />
+  </div>
+
+  <Transition from={color} to={next} />
+</section>
+
+<style lang="scss">
+  .color-section {
+    display: flex;
+    flex-flow: column nowrap;
+
+    padding: 0;
+    margin: 0;
+
+    .section-title {
+      position: relative;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0 0 0.25em 0;
+      color: var(--rel-shade-700);
+
+      font-size: 1.5rem;
+
+      &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 3px;
+
+          background: var(--rel-shade-500);
+          background-image: linear-gradient(120deg, var(--rel-shade-600) 60%, var(--rel-shade-400));
+          border-radius: 0 0 3px 3px;
+        }
+    }
+
+    .content-pad {
+      padding: 0.5rem 1rem;
+    }
+  }
+</style>

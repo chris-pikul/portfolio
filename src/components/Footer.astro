@@ -1,0 +1,18 @@
+---
+const thisYear = (new Date()).getFullYear();
+---
+<footer id='main-footer'>
+  <span id='footer-copyright'>&copy;{thisYear} Chris Pikul, All Rights Reserved.</span>
+</footer>
+
+<style lang="scss">
+  @use '../styles/_base' as *;
+  @use '../styles/_colors' as *;
+
+  #footer-copyright {
+    margin: 1rem 0 0 0;
+    text-align: center;
+    font-size: 0.7rem;
+    color: $clr-shade-600;
+  }
+</style>

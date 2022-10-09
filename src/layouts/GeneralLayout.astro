@@ -1,0 +1,53 @@
+---
+/*
+ * General layout for pages that ARE NOT the homepage
+ */
+ import type { Props as SEOProps } from 'astro-seo';
+
+ import BaseLayout from '@layouts/BaseLayout.astro';
+
+ const seoOveride:SEOProps = Astro.props.seo ?? {};
+---
+<BaseLayout seo={seoOveride}>
+  <header class='white'>
+    <nav id='main-nav'>
+      <a id='main-nav-name' href='/'>Chris Pikul</a>
+    </nav>
+    <div class='hero'>
+      <h1>{ Astro.props.title }</h1>
+      <slot name='hero-content'/>
+    </div>
+  </header>
+  <slot />
+</BaseLayout>
+
+<style lang="scss">
+  @use '../styles/_base' as *;
+  @use '../styles/_colors' as *;
+
+  #main-nav {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    padding: 0.5rem 1rem;
+    border-bottom: 2px dotted var(--rel-shade-100);
+
+    #main-nav-name {
+      display: inline-block;
+      position: relative;
+      top: 0.1ch;
+      height: 1rem;
+      @include font_title();
+      font-size: 1rem;
+      line-height: 1em;
+      vertical-align: bottom;
+      color: var(--primary-400);
+    }
+  }
+
+  .hero {
+    padding: 1rem;
+    padding-bottom: 0;
+  }
+</style>
