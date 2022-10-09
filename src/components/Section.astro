@@ -6,7 +6,13 @@ const next:string = Astro.props.next ?? 'black';
 ---
 <section class:list={[ 'color-section', color ]}>
   <div class='content-pad'>
-    { Astro.props.title && <h2 class='section-title'>{ Astro.props.title }</h2> }
+    { Astro.props.title && (
+      Astro.props.titleHREF
+        ? 
+        <a href={Astro.props.titleHREF}><h2 class='section-title'>{ Astro.props.title }</h2></a>
+        :
+        <h2 class='section-title'>{ Astro.props.title }</h2>
+    )}
 
     <slot />
   </div>
@@ -44,10 +50,6 @@ const next:string = Astro.props.next ?? 'black';
           background-image: linear-gradient(120deg, var(--rel-shade-600) 60%, var(--rel-shade-400));
           border-radius: 0 0 3px 3px;
         }
-    }
-
-    .content-pad {
-      padding: 0.5rem 1rem;
     }
   }
 </style>

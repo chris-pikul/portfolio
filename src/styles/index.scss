@@ -19,7 +19,7 @@
   }
 }
 
-/* Color Palette Injection */
+/* Color Palette Injection and root variables */
 :root {
   --white: #{$clr-white};
   --shade-100: #{$clr-shade-100};
@@ -56,6 +56,9 @@
   --tertiary-500: #{$clr-tertiary-500};
   --tertiary-600: #{$clr-tertiary-600};
   --tertiary-700: #{$clr-tertiary-700};
+
+  --content-pad-x: 0.5rem;
+  --content-pad-y: 1rem;
 }
 
 html {
@@ -79,7 +82,7 @@ body {
   color: var(--black);
 
   @include font_common();
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 /* A11y hiding */
@@ -163,6 +166,12 @@ b { font-weight: 500; }
   --rel-shade-700: #{ $clr-tertiary-700 };
 }
 
+.content-pad {
+  padding: 0.5rem 1rem;
+  padding: var(--content-pad-y) var(--content-pad-x);
+  padding-bottom: 0;
+}
+
 footer#main-footer {
   display: flex;
   flex-flow: column nowrap;
@@ -175,4 +184,48 @@ footer#main-footer {
   @include font_common();
   font-size: 1rem;
   color: $clr-white;
+}
+
+@media screen and (min-device-width: 758px) {
+  :root {
+    --content-pad-x: 1rem;
+    --content-pad-y: 1rem;
+  }
+
+  html, body {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-device-width: 1024px) {
+  :root {
+    --content-pad-x: 2rem;
+    --content-pad-y: 1rem;
+  }
+
+  html, body {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-device-width: 1440px) {
+  :root {
+    --content-pad-x: 4rem;
+    --content-pad-y: 1rem;
+  }
+
+  html, body {
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-device-width: 2000px) {
+  :root {
+    --content-pad-x: 5rem;
+    --content-pad-y: 2rem;
+  }
+
+  html, body {
+    font-size: 50px;
+  }
 }

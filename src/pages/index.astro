@@ -16,7 +16,7 @@ import Transition from '@components/Transition.astro';
 
   <Transition from='white' to='tertiary' />
 
-  <Section title='About Me' color='tertiary' next='primary'>
+  <Section title='About Me' color='tertiary' next='primary' alternate>
     <p>Born and raised in the <b>San Francisco Bay Area</b>, I learned programming at the age of 9, as a facination on how websites worked (at that time, it was Netscape and HTML 1.0).
       Today, I am a polyglot programmer with a major focus on full-stack web development, with additional interests in Game and Application Development.</p>
 
@@ -27,7 +27,7 @@ import Transition from '@components/Transition.astro';
     <p>This is a list of some of the works I've done, or have been a part of. Most of it is featured on GitHub under my username <a href='https://github.com/chris-pikul'>"chris-pikul"</a>.</p>
   </Section>
 
-  <Section title='Articles' color='secondary' next='black'>
+  <Section title='Articles' titleHREF='/articles/' color='secondary' next='black' alternate>
     <p>I've tried, and will continue to, write articles about things I find interesting or to help others on topics that are less-than-commonly written about.</p>
   </Section>
   
@@ -47,6 +47,7 @@ import Transition from '@components/Transition.astro';
     overflow-x: hidden;
 
     padding: 2rem 1rem 1rem 1rem;
+    padding: 2rem var(--content-pad-x) var(--content-pad-y) var(--content-pad-x);
     @include font_title();
 
     #hero-name {
