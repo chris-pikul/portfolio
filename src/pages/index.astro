@@ -3,6 +3,7 @@
  * Index/Home page
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/Section.astro';
 import Transition from '@components/Transition.astro';
 
 ---
@@ -15,37 +16,20 @@ import Transition from '@components/Transition.astro';
 
   <Transition from='white' to='tertiary' />
 
-  <section class='tertiary'>
-    <div class='content-pad'>
-      <h2>About Me</h2>
+  <Section title='About Me' color='tertiary' next='primary'>
+    <p>Born and raised in the <b>San Francisco Bay Area</b>, I learned programming at the age of 9, as a facination on how websites worked (at that time, it was Netscape and HTML 1.0).
+      Today, I am a polyglot programmer with a major focus on full-stack web development, with additional interests in Game and Application Development.</p>
 
-      <p>Born and raised in the <b>San Francisco Bay Area</b>, I learned programming at the age of 9, as a facination on how websites worked (at that time, it was Netscape and HTML 1.0).
-        Today, I am a polyglot programmer with a major focus on full-stack web development, with additional interests in Game and Application Development.</p>
+    <p>This site is a culmination of my projects, any written articles that I have produced, and represents a portfolio piece on it's own.</p>
+  </Section>
 
-      <p>This site is a culmination of my projects, any written articles that I have produced, and represents a portfolio piece on it's own.</p>
-    </div>
+  <Section title='Projects' color='primary' next='secondary'>
+    <p>This is a list of some of the works I've done, or have been a part of. Most of it is featured on GitHub under my username <a href='https://github.com/chris-pikul'>"chris-pikul"</a>.</p>
+  </Section>
 
-    <Transition from='tertiary' to='primary' alternate />
-  </section>
-
-  <section class='primary'>
-    <div class='content-pad'>
-      <h2>Projects</h2>
-      <p>This is a list of some of the works I've done, or have been a part of. Most of it is featured on GitHub under my username <a href='https://github.com/chris-pikul'>"chris-pikul"</a>.</p>
-    </div>
-
-    <Transition from='primary' to='secondary' />
-  </section>
-
-  <section class='secondary'>
-    <div class='content-pad'>
-      <h2>Articles</h2>
-      <p>I've tried, and will continue to, write articles about things I find interesting or to help others on topics that are less-than-commonly written about.</p>
-    </div>
-
-    <Transition from='secondary' to='black' />
-  </section>
-
+  <Section title='Articles' color='secondary' next='black'>
+    <p>I've tried, and will continue to, write articles about things I find interesting or to help others on topics that are less-than-commonly written about.</p>
+  </Section>
   
 </BaseLayout>
 
@@ -110,58 +94,6 @@ import Transition from '@components/Transition.astro';
       vertical-align: middle;
       white-space: nowrap;
       color: $clr-shade-700;
-    }
-  }
-
-  section {
-    display: flex;
-    flex-flow: column nowrap;
-    
-    position: relative;
-    width: 100%;
-
-    @include font_common();
-    font-size: 1rem;
-
-    .content-pad {
-      padding: 0.5rem 1rem;
-
-      h2 {
-        position: relative;
-        width: 100%;
-        margin-bottom: 1rem;
-        padding: 0 0 0.25em 0;
-        color: var(--rel-shade-700);
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          height: 3px;
-
-          background: var(--rel-shade-500);
-          background-image: linear-gradient(120deg, var(--rel-shade-600) 60%, var(--rel-shade-400));
-          border-radius: 0 0 3px 3px;
-        }
-      }
-    }
-
-    p:not(:last-of-type) {
-      margin-bottom: 1em;
-    }
-  }
-
-  .section-transition {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin: 0 -1px -1px -1px;
-    
-    path {
-      filter: drop-shadow(0.5rem -0.5rem 2rem rgb(0 0 0 / 15%));
     }
   }
 </style>

@@ -11,7 +11,7 @@ const next:string = Astro.props.next ?? 'black';
     <slot />
   </div>
 
-  <Transition from={color} to={next} />
+  <Transition from={color} to={next} alternate={ Astro.props.alternate } />
 </section>
 
 <style lang="scss">
