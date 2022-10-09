@@ -149,6 +149,7 @@ p {
 
   --rel-background: #{ $clr-white};
   --rel-color: #{ $clr-black };
+  --rel-color-comp: #{ $clr-primary-400 };
   --rel-shade-100: #{ $clr-shade-100 };
   --rel-shade-200: #{ $clr-shade-200 };
   --rel-shade-300: #{ $clr-shade-300 };
@@ -164,6 +165,7 @@ p {
 
   --rel-background: #{ $clr-primary-400 };
   --rel-color: #{ $clr-white };
+  --rel-color-comp: #{ $clr-secondary-400 };
   --rel-shade-100: #{ $clr-primary-700 };
   --rel-shade-200: #{ $clr-primary-600 };
   --rel-shade-300: #{ $clr-primary-500 };
@@ -179,6 +181,7 @@ p {
 
   --rel-background: #{ $clr-secondary-400 };
   --rel-color: #{ $clr-white };
+  --rel-color-comp: #{ $clr-tertiary-400 };
   --rel-shade-100: #{ $clr-secondary-700 };
   --rel-shade-200: #{ $clr-secondary-600 };
   --rel-shade-300: #{ $clr-secondary-500 };
@@ -194,6 +197,7 @@ p {
 
   --rel-background: #{ $clr-tertiary-400 };
   --rel-color: #{ $clr-black };
+  --rel-color-comp: #{ $clr-primary-400 };
   --rel-shade-100: #{ $clr-tertiary-100 };
   --rel-shade-200: #{ $clr-tertiary-200 };
   --rel-shade-300: #{ $clr-tertiary-300 };
