@@ -5,12 +5,92 @@
  * 
  * Master layout that should wrap or be the derivitive of all other layouts
  */
+import { SEO } from 'astro-seo';
+import type { Props as SEOProps } from 'astro-seo';
+
+import '@styles/master.scss';
+
+import Navigation from '@components/SiteNavigation.astro';
+
+// Prepare objects for SEO injection, using optional overrides provided by the page
+const seoOveride:SEOProps = Astro.props.seo ?? {};
+const seoProps:SEOProps = {
+  title: 'Chris Pikul',
+  description: 'Portfolio site for Chris Pikul, developer for hire',
+  openGraph: {
+    basic: {
+      title: 'Portfolio of Chris Pikul',
+      type: 'website',
+      image: '/dummy.png',
+    },
+    image: {
+      url: '/dummy.png',
+      type: 'image/png',
+      alt: 'dummy image',
+    },
+    optional: {
+      description: 'Personal portfolio site for Chris Pikul, developer for hire.',
+      locale: 'en-US',
+      siteName: 'Chris Pikul',
+    }
+  },
+  twitter: {
+    card: 'summary',
+    site: '@ChrisPikul510',
+    creator: '@ChrisPikul510',
+  },
+  extend: {
+    link: [
+      { rel: 'icon', href: '/favicon.ico' },
+    ],
+    meta: [
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    ],
+  },
+
+  ...seoOveride,
+};
+
 ---
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello World</title>
+  <SEO {...seoProps} />
+
+  <link rel='preload' as='style' href='/fonts/SourceSans3/SourceSans3.css' />
+  <link rel='stylesheet' href='/fonts/SourceSans3/SourceSans3.css' media='print' onload='this.media = "all"' />
+  
+  <noscript>
+    <link rel='stylesheet' href='/fonts/SourceSans3/SourceSans3.css' />
+  </noscript>
 </head>
-<body>
+<body class='no-js'>
+  <Navigation />
+
   <slot /> 
+
+  <div id='fx-overlay-grain'></div>
+  <div id='fx-overlay-vignette'></div>
+
+  <script is:inline>document.body.classList.remove('no-js');</script>
 </body>
 </html>
+
+<script>
+  // Web-font loading strategy
+  (() => {
+    const markFontsLoaded = () => document.documentElement.classList.add('fonts-loaded');
+    if(sessionStorage && sessionStorage.fontsLoaded) {
+      markFontsLoaded();
+    } else if('fonts' in document) {
+      Promise.all([
+        document.fonts.load('300 1em "Source Sans 3"')
+      ]).then(() => {
+        if(sessionStorage)
+          sessionStorage.fontsLoaded = true;
+      }).catch(err => {
+        console.error(`error loading web-fonts: ${err}`);
+      }).finally(markFontsLoaded);
+    }
+  })();
+</script>
