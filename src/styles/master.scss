@@ -42,6 +42,9 @@ html {
 }
 
 body {
+  display: flex;
+  flex-flow: column nowrap;
+
   width: 100%;
   min-height: 100vh;
 
@@ -101,6 +104,10 @@ body {
   border: 0; 
 }
 
+.landscape {
+  display: none;
+}
+
 .separator {
   display: block;
 
@@ -132,6 +139,113 @@ body {
   &.separator-round {
     &::before, &::after {
       border-radius: 4px;
+    }
+  }
+}
+
+.intro-first {
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out 1 forwards;
+}
+
+.intro-second {
+  opacity: 0;
+  animation: fadeIn 2s ease-out 1s 1 forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@media screen and (prefers-color-scheme: 'dark') {
+  :root {
+    /* Dark mode just inverts everything */
+    --shade-50: #{$shade-900};
+    --shade-100: #{$shade-900};
+    --shade-200: #{$shade-800};
+    --shade-300: #{$shade-700};
+    --shade-400: #{$shade-600};
+    --shade-500: #{$shade-500};
+    --shade-600: #{$shade-400};
+    --shade-700: #{$shade-300};
+    --shade-800: #{$shade-200};
+    --shade-900: #{$shade-100};
+  }
+
+  body {
+    background: linear-gradient(175deg, $bg-dark-start 5%, $bg-dark-end 95%);
+
+    #fx-overlay-grain {
+      opacity: 0.2;
+    }
+
+    #fx-overlay-vignette {
+      background: radial-gradient(farthest-corner at center, rgba(0, 0, 0, 0) 50%, $vignette-end);
+      opacity: 0.15;
+    }
+  }
+}
+
+@media screen and (min-device-width: 768px) and (orientation: landscape) {
+  html {
+    font-size: 18pt;
+  }
+
+  body {
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+    .landscape {
+      display: block;
+    }
+
+    #master-content {
+      position: relative;
+      width: 100%;
+      max-width: 77vw;
+      height: 100%;
+
+      #master-right {
+        display: flex;
+        flex-flow: row nowrap;
+
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 2.25rem;
+        height: 62vh;
+        min-height: 375px;
+
+        margin: 0 0 0 2rem;
+        padding: 0;
+
+        transform: translateY(-50%);
+
+        color: $shade-300;
+        color: var(--shade-300);
+
+        .separator {
+          width: 2px;
+          height: 100%;
+          margin: 0 6px;
+
+          &::before {
+            top: 0;
+            right: auto;
+            bottom: auto;
+            left: -3px;
+          }
+
+          &::after {
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: -3px;
+          }
+        }
+      }
     }
   }
 }

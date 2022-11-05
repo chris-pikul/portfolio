@@ -65,9 +65,15 @@ const seoProps:SEOProps = {
   </noscript>
 </head>
 <body class='no-js'>
-  <Navigation />
+  <div id='master-content'>
+    <Navigation />
 
-  <slot /> 
+    <slot /> 
+
+    <div id='master-right' class='landscape intro-second'>
+      <div class='separator separator-round' />
+    </div>
+  </div>
 
   <div id='fx-overlay-grain'></div>
   <div id='fx-overlay-vignette'></div>
@@ -77,8 +83,8 @@ const seoProps:SEOProps = {
 </html>
 
 <script>
-  // Web-font loading strategy
   (() => {
+    // Web-font loading strategy
     const markFontsLoaded = () => document.documentElement.classList.add('fonts-loaded');
     if(sessionStorage && sessionStorage.fontsLoaded) {
       markFontsLoaded();
@@ -91,6 +97,22 @@ const seoProps:SEOProps = {
       }).catch(err => {
         console.error(`error loading web-fonts: ${err}`);
       }).finally(markFontsLoaded);
+    }
+
+    // Animate the grain effect
+    const grainEl = document.getElementById('fx-overlay-grain');
+    if(grainEl) {
+      const origOpacity = parseFloat(getComputedStyle(grainEl).opacity);
+      const framerate = (1000 / 12);
+      const randPerc = () => Math.trunc(Math.random() * 100) + '%';
+      const anim = () => {
+        grainEl.style.backgroundPositionX = randPerc();
+        grainEl.style.backgroundPositionY = randPerc();
+        grainEl.style.opacity = (origOpacity - (Math.random() * 0.1)).toPrecision(2);
+
+        setTimeout(anim, framerate);
+      }
+      setTimeout(anim, framerate);
     }
   })();
 </script>

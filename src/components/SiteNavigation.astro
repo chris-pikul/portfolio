@@ -7,12 +7,12 @@
  * at the top of any page
  */
 ---
-<nav id='master-nav'>
-  <div id='master-nav-links'>
-    <a href='/' class='active'>About</a>
-    <a href='/projects'>Projects</a>
-    <a href='/articles'>Articles</a>
-  </div>
+<nav id='master-nav' class='intro-second'>
+  <ul id='master-nav-links'>
+    <li class='nav-link'><a href='/' class='active'>About</a></li>
+    <li class='nav-link'><a href='/projects'>Projects</a></li>
+    <li class='nav-link'><a href='/articles'>Articles</a></li>
+  </ul>
   <div id='master-nav-separators'>
     <div class='separator separator-round' />
     <div id='master-nav-active' class='separator' />
@@ -95,18 +95,6 @@
     color: $shade-300;
     color: var(--shade-300);
 
-    opacity: 0;
-    animation: fadeNavIn 1.5s ease-in 1s forwards;
-
-    @keyframes fadeNavIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1.0;
-      }
-    }
-
     #master-nav-links {
       display: flex;
       flex-flow: row nowrap;
@@ -169,6 +157,96 @@
           top: -2px;
           width: 6px;
           height: 6px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-device-width: 768px) and (orientation: landscape) {
+    #master-nav {
+      display: flex;
+      flex-flow: row nowrap;
+
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 2.25rem;
+      height: 62vh;
+      min-height: 375px;
+
+      margin: 0 2rem 0 0;
+      padding: 0;
+
+      transform: translateY(-50%);
+
+      #master-nav-links {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
+
+        margin: 0;
+        padding: 1.5em 0;
+
+        .nav-link {
+          display: block;
+
+          position: relative;
+          width: 100%;
+          height: 1px;
+
+          &:first-child a {
+            transform: rotate(270deg) translateX(-100%);
+          }
+
+          &:last-child a {
+            transform: rotate(270deg) translateX(0);
+          }
+        }
+
+        a, a:visited {
+          display: block;
+          box-sizing: border-box;
+
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          transform-origin: 0 0;
+          transform: rotate(270deg) translateX(-50%);
+        }
+      }
+
+      #master-nav-separators {
+        display: block;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 0.6rem;
+
+        .separator {
+          width: 2px;
+          height: 100%;
+          margin: 0 6px;
+
+          &::before {
+            top: 0;
+            right: auto;
+            bottom: auto;
+            left: -3px;
+          }
+
+          &::after {
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: -3px;
+          }
         }
       }
     }
