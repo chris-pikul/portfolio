@@ -65,14 +65,16 @@ const seoProps:SEOProps = {
   </noscript>
 </head>
 <body class='no-js'>
-  <div id='master-content'>
+  <div id='master-sides'>
     <Navigation />
-
-    <slot /> 
 
     <div id='master-right' class='landscape intro-second'>
       <div class='separator separator-round' />
     </div>
+  </div>
+  
+  <div id='master-content'>
+    <slot />
   </div>
 
   <div id='fx-overlay-grain'></div>
