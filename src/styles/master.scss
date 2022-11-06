@@ -166,6 +166,11 @@ body {
 .page {
   width: 100%;
   min-height: 100vh;
+
+  > .section-anchor {
+    position: relative;
+    top: -4rem;
+  }
 }
 
 .intro-first {
@@ -295,6 +300,10 @@ body {
       width: 100%;
       max-width: 60vw;
       height: 100%;
+
+      .page > .section-anchor {
+        top: -19vh;
+      }
     }
   }
 }
