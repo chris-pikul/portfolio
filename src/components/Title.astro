@@ -1,0 +1,102 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Provides a section, or "page" title
+ */
+---
+<div class='page-title' id={Astro.props.id}>
+  <h3 class='page-title-text'>{ Astro.props.text }</h3>
+
+  <svg class='page-title-right' viewBox='0 0 200 100' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'>
+    <defs>
+      <linearGradient id='fade'>
+        <stop offset='0%' stop-color='currentColor' stop-opacity='1' />
+        <stop offset='40%' stop-color='currentColor' stop-opacity='0.5' />
+        <stop offset='100%' stop-color='currentColor' stop-opacity='0' />
+      </linearGradient>
+    </defs>
+    <polygon points='0,0 200,50 0,100' fill='url(#fade)' />
+  </svg>
+
+  <div class='page-title-divider' />
+</div>
+
+<style lang="scss">
+  @use '../styles/base' as *;
+
+  .page-title {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    position: relative;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+
+    @include font-common(2rem);
+
+    .page-title-text {
+      color: var(--shade-800);
+      text-shadow: 0px 4px 0.1em rgb(0 0 0 / 0.5);
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 1px;
+
+      background: var(--shade-200);
+    }
+
+    .page-title-right {
+      flex: 1;
+      width: 100%;
+      height: 0.63em;
+      margin-left: 1rem;
+
+      color: var(--shade-200);
+      opacity: 0.3;
+    }
+
+    .page-title-divider {
+      display: block;
+
+      position: absolute;
+      bottom: 0;
+      left: -8px;
+      right: -8px;
+      height: 2px;
+
+      background: var(--shade-200);
+
+      &::before, &::after {
+        content: '';
+        display: block;
+
+        position: absolute;
+        top: -3px;
+        left: -8px;
+        width: 8px;
+        height: 8px;
+
+        background: var(--shade-200);
+
+        /* Make it a diamond */
+        transform-origin: center;
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        left: unset;
+        right: -8px;
+      }
+    }
+  }
+</style>

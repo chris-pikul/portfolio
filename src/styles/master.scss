@@ -30,6 +30,9 @@
   --shade-700: #{$shade-700};
   --shade-800: #{$shade-800};
   --shade-900: #{$shade-900};
+
+  --bg-start: #{$bg-light-start};
+  --bg-end: #{$bg-light-end};
 }
 
 html {
@@ -40,6 +43,8 @@ html {
   background: $bg-light-start;
   color: $shade-800;
   color: var(--shade-800);
+
+  scroll-behavior: smooth;
 }
 
 body {
@@ -51,7 +56,8 @@ body {
 
   position: relative;
 
-  background: linear-gradient(175deg, $bg-light-start 5%, $bg-light-end 95%);
+  background: linear-gradient(175deg, var(--bg-start) 5%, var(--bg-end) 95%);
+  background-attachment: fixed;
 
   #fx-overlay-grain, #fx-overlay-vignette {
     display: none;
@@ -150,6 +156,7 @@ body {
   right: 0;
   bottom: auto;
   left: 0;
+  z-index: 9000;
 }
 
 #master-content {
@@ -189,11 +196,12 @@ body {
     --shade-700: #{$shade-300};
     --shade-800: #{$shade-200};
     --shade-900: #{$shade-100};
+
+    --bg-start: #{$bg-dark-start};
+    --bg-end: #{$bg-dark-end};
   }
 
   body {
-    background: linear-gradient(175deg, $bg-dark-start 5%, $bg-dark-end 95%);
-
     #fx-overlay-grain {
       opacity: 0.2;
     }
