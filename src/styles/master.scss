@@ -173,6 +173,45 @@ body {
   }
 }
 
+p:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+p {
+  a, a:visited {
+    position: relative;
+    z-index: 5;
+
+    color: $shade-900;
+    color: var(--shade-900);
+
+    transition: color ease-in 0.3s;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0.2em;
+      left: -2px;
+      right: -2px;
+      height: 1px;
+      z-index: -1;
+
+      background-color: var(--shade-200);
+
+      transition: background ease-out 0.5s, height ease-in 0.2s;
+    }
+
+    &:hover {
+      color: var(--shade-200);
+      &::before {
+        height: 1.2em;
+        background-color: var(--shade-600);
+      }
+    }
+  }
+}
+
 .intro-first {
   opacity: 0;
   animation: fadeIn 2s ease-in-out 1 forwards;
