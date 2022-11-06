@@ -7,20 +7,34 @@
  * at the top of any page
  */
 ---
-<nav id='master-nav' class='intro-second'>
-  <ul id='master-nav-links'>
-    <li class='nav-link'><a href='/' class='active'>About</a></li>
-    <li class='nav-link'><a href='/projects'>Projects</a></li>
-    <li class='nav-link'><a href='/articles'>Articles</a></li>
-  </ul>
-  <div id='master-nav-separators'>
-    <div class='separator separator-round' />
-    <div id='master-nav-active' class='separator' />
-  </div>
-</nav>
+<>
+  <nav id='master-nav-portrait' class='intro-second'>
+    <ul class='nav-links'>
+      <li class='nav-link'><a href='/' class='active'>About</a></li>
+      <li class='nav-link'><a href='/projects'>Projects</a></li>
+      <li class='nav-link'><a href='/articles'>Articles</a></li>
+    </ul>
+    <div class='dividers'>
+      <div class='separator separator-round' />
+      <div id='nav-portrait-active' class='separator' />
+    </div>
+  </nav>
+
+  <nav id='master-nav-landscape' class='landscape intro-second'>
+    <ul class='nav-links'>
+      <li class='nav-link'><a href='/' class='active'>About</a></li>
+      <li class='nav-link'><a href='/projects'>Projects</a></li>
+      <li class='nav-link'><a href='/articles'>Articles</a></li>
+    </ul>
+    <div class='dividers'>
+      <div class='separator separator-round' />
+      <div id='nav-landscape-active' class='separator' />
+    </div>
+  </nav>
+</>
 
 <script>
-  (() => {
+  function hookPortrait() {
     console.info('Hooking up master navigation bar');
 
     const masterNav = document.getElementById('master-nav');
@@ -39,9 +53,7 @@
         console.info('Moving active slider to link target', target);
         const rect = target.getBoundingClientRect();
         
-        activeSlider.style.opacity = '1';
-        activeSlider.style.left = rect.x + 'px';
-        activeSlider.style.width = (rect.width) + 'px';
+        activeSlider.setAttribute('style', `opacity: 1;`);
       } else if(activeLink) {
         // Return to active
         moveTo(activeLink);
@@ -81,6 +93,14 @@
     });
 
     window.addEventListener('resize', () => moveTo(activeLink));
+  }
+
+  function hookLandscape() {
+
+  }
+
+  (() => {
+    hookPortrait();
   })();
 </script>
 
