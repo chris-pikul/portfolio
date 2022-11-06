@@ -102,8 +102,32 @@
     position: sticky;
 
     padding: 1em 0.5em;
+
+    /* Background so we can clip stuff under it */
+    background: var(--bg-start);
+    background: linear-gradient(175deg, var(--bg-start) 5%, var(--bg-end) 95%);
+    background-attachment: fixed;
+
     color: $shade-300;
     color: var(--shade-300);
+
+    /* Gradient to transition stuff */
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 2rem;
+
+      background: var(--bg-start);
+      background: linear-gradient(175deg, var(--bg-start) 5%, var(--bg-end) 95%);
+      background-attachment: fixed;
+
+      -webkit-mask-image: linear-gradient(black, transparent);
+      mask-image: linear-gradient(black, transparent);
+    }
 
     .nav-links {
       display: flex;
