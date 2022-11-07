@@ -119,9 +119,14 @@ body {
     position: relative;
     top: -4rem;
   }
+
+  &:last-of-type {
+    min-height: unset;
+    margin-bottom: 3rem;
+  }
 }
 
-p:not(:last-child) {
+p:not(:last-of-type) {
   margin-bottom: 1em;
 }
 

@@ -111,12 +111,16 @@ const thisYear = (new Date()).getFullYear();
   #master-footer {
 
     /* Line-up with bottom */
+    margin-top: 4rem;
+    padding-top: 1rem;
     padding-bottom: 4rem;
 
     @include font-code(1rem);
     text-align: center;
     color: $shade-600;
     color: var(--shade-600);
+
+    border-top: 1px solid var(--shade-300);
   }
 
   #fx-overlay-grain, #fx-overlay-vignette {
@@ -228,7 +232,7 @@ const thisYear = (new Date()).getFullYear();
         top: -19vh;
       }
     }
-    
+
     #master-footer {
       padding-bottom: 19vh;
     }
