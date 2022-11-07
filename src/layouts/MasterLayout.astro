@@ -51,6 +51,9 @@ const seoProps:SEOProps = {
   ...seoOveride,
 };
 
+// Copyright injection
+const thisYear = (new Date()).getFullYear();
+
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +79,8 @@ const seoProps:SEOProps = {
   
   <div id='master-content'>
     <slot />
+
+    <footer id='master-footer'>©{ thisYear } Chris Pikul.<br/>All Rights Reserved.</footer>
   </div>
 
   <div id='fx-overlay-grain'></div>
@@ -84,6 +89,163 @@ const seoProps:SEOProps = {
   <script is:inline>document.body.classList.remove('no-js');</script>
 </body>
 </html>
+
+<style lang="scss" is:global>
+  @use '../styles/base' as *;
+  @use '../styles/colors' as *;
+
+  #master-sides {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    z-index: 9000;
+  }
+
+  #master-content {
+    padding: 0 1rem;
+  }
+  
+  /* Site-wide footer */
+  #master-footer {
+
+    /* Line-up with bottom */
+    padding-bottom: 4rem;
+
+    @include font-code(1rem);
+    text-align: center;
+    color: $shade-600;
+    color: var(--shade-600);
+  }
+
+  #fx-overlay-grain, #fx-overlay-vignette {
+    display: none;
+    pointer-events: none;
+  }
+
+  @supports (mix-blend-mode: overlay) {
+    #fx-overlay-grain {
+      display: block;
+      pointer-events: none;
+  
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 8000;
+  
+      background: url('/img/noise-grain-512.png') top left repeat;
+      mix-blend-mode: color-burn;
+      opacity: 1;
+    }
+  
+    #fx-overlay-vignette {
+      display: block;
+      pointer-events: none;
+  
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 9000;
+  
+      background: radial-gradient(farthest-corner at center, $vignette-start 30%, $vignette-end);
+      mix-blend-mode: color-burn;
+      opacity: 0.3;
+    }
+  }
+
+  /* Landscape Switch */
+  @media screen and (min-device-width: 768px) and (orientation: landscape) {
+    #master-sides {
+      top: 50%;
+      right: unset;
+      bottom: unset;
+      left: 50%;
+      width: 100%;
+      max-width: 75vw;
+      height: 62vh;
+      min-height: 375px;
+      z-index: 9000;
+
+      transform: translate(-50%, -50%);
+
+      pointer-events: none;
+
+      & * { pointer-events: all; }
+
+      #master-right {
+        display: flex;
+        flex-flow: row nowrap;
+
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 2.25rem;
+        height: 62vh;
+        min-height: 375px;
+
+        margin: 0 0 0 2rem;
+        padding: 0;
+
+        transform: translateY(-50%);
+
+        color: $shade-300;
+        color: var(--shade-300);
+
+        .separator {
+          width: 2px;
+          height: 100%;
+          margin: 0 6px;
+
+          &::before {
+            top: 0;
+            right: auto;
+            bottom: auto;
+            left: -3px;
+          }
+
+          &::after {
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: -3px;
+          }
+        }
+      }
+    }
+
+    #master-content {
+      position: relative;
+      width: 100%;
+      max-width: 60vw;
+      height: 100%;
+
+      .page > .section-anchor {
+        top: -19vh;
+      }
+    }
+    
+    #master-footer {
+      padding-bottom: 19vh;
+    }
+  }
+
+  /* Dark Mode */
+  @media screen and (prefers-color-scheme: 'dark') {
+    #fx-overlay-grain {
+      opacity: 0.2;
+    }
+
+    #fx-overlay-vignette {
+      background: radial-gradient(farthest-corner at center, rgba(0, 0, 0, 0) 50%, $vignette-end);
+      opacity: 0.15;
+    }
+  }
+</style>
 
 <script>
   (() => {
