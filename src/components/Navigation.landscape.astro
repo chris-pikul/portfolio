@@ -70,14 +70,15 @@
     const hoverEnd = () => moveTo();
 
     // Find the current page's active link
-    const curPath = document.location.origin + document.location.pathname;
+    const curPath = document.location.pathname;
     console.info(`Current path = ${curPath}`);
 
     masterNav.querySelectorAll('a').forEach(link => {
       link.className = '';
 
       console.info(`Checking link path ${link.href}`);
-      if(link.href === curPath) {
+      const path = new URL(link.href);
+      if(path.pathname === curPath) {
         console.info('Found active link');
         makeActive(link);
       }
