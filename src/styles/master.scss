@@ -179,6 +179,8 @@ p:not(:last-child) {
 
 p {
   a, a:visited {
+    display: inline-block;
+
     position: relative;
     z-index: 5;
 
@@ -191,7 +193,7 @@ p {
       content: '';
       display: block;
       position: absolute;
-      bottom: 0.2em;
+      bottom: -2px;
       left: -2px;
       right: -2px;
       height: 1px;
@@ -205,7 +207,8 @@ p {
     &:hover {
       color: var(--shade-200);
       &::before {
-        height: 1.2em;
+        height: 1.5em;
+        height: calc(1.5em - 4px);
         background-color: var(--shade-600);
       }
     }
