@@ -64,21 +64,28 @@ import Title from '@components/Title.astro';
     }
   }
 
-  @media screen and (min-device-width: 1020px) {
+  @media screen and (min-width: 768px) {
     #intro-hero {
       h1 { font-size: 3rem; }
       h2 { font-size: 1rem; }
     }
   }
 
-  @media screen and (min-device-width: 1350px) {
+  @media screen and (min-width: 1080px) {
+    #intro-hero {
+      h1 { font-size: 4rem; }
+      h2 { font-size: 1rem; }
+    }
+  }
+
+  @media screen and (min-width: 1350px) {
     #intro-hero {
       h1 { font-size: 4rem; }
       h2 { font-size: 1.2rem; }
     }
   }
 
-  @media screen and (min-device-width: 1500px) {
+  @media screen and (min-width: 1500px) {
     #intro-hero {
       h1 { font-size: 5rem; }
       h2 { font-size: 1.3rem; }

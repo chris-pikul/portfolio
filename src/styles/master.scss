@@ -197,7 +197,8 @@ p {
   }
 }
 
-@media screen and (min-device-width: 768px) and (orientation: landscape) {
+/* Landscape Switch */
+@media screen and (min-width: 768px) and (orientation: landscape) {
   html {
     font-size: 18pt;
   }
