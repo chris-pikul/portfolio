@@ -1,3 +1,4 @@
+// @ts-ignore-next-line This is a false error, it compiles just fine.
 import type { Props as SEOProps } from 'astro-seo';
 
 /**
