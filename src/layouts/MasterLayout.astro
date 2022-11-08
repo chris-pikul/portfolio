@@ -10,46 +10,12 @@ import type { Props as SEOProps } from 'astro-seo';
 
 import '@styles/master.scss';
 
+import MakeSEO from 'src/seo';
+
 import Navigation from '@components/SiteNavigation.astro';
 
 // Prepare objects for SEO injection, using optional overrides provided by the page
-const seoOveride:SEOProps = Astro.props.seo ?? {};
-const seoProps:SEOProps = {
-  title: 'Chris Pikul',
-  description: 'Portfolio site for Chris Pikul, developer for hire',
-  openGraph: {
-    basic: {
-      title: 'Portfolio of Chris Pikul',
-      type: 'website',
-      image: '/dummy.png',
-    },
-    image: {
-      url: '/dummy.png',
-      type: 'image/png',
-      alt: 'dummy image',
-    },
-    optional: {
-      description: 'Personal portfolio site for Chris Pikul, developer for hire.',
-      locale: 'en-US',
-      siteName: 'Chris Pikul',
-    }
-  },
-  twitter: {
-    card: 'summary',
-    site: '@ChrisPikul510',
-    creator: '@ChrisPikul510',
-  },
-  extend: {
-    link: [
-      { rel: 'icon', href: '/favicon.ico' },
-    ],
-    meta: [
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    ],
-  },
-
-  ...seoOveride,
-};
+const seoProps = MakeSEO(Astro.props.seo);
 
 // Copyright injection
 const thisYear = (new Date()).getFullYear();
