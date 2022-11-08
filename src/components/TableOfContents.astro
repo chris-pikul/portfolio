@@ -1,0 +1,128 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Generates a Table of Contents to be featured at the top of
+ * an article.
+ */
+import type { MarkdownHeading } from 'astro';
+
+const rawHeadings:Array<MarkdownHeading> = Astro.props.headings ?? [];
+
+interface HeadingEx extends MarkdownHeading {
+  chapterLevel:Array<number>;
+  chapterNumber:string;
+}
+
+// Hold for the text generation of depth
+let chaptLevels:Array<number> = [];
+
+const headings:Array<HeadingEx> = rawHeadings.filter(heading => heading.depth > 1)
+  .map((heading) => {
+    heading.depth--;
+    return heading;
+  })
+  .map((heading) => {
+    let { depth } = heading;
+    if(chaptLevels.length === depth) {
+      chaptLevels[depth - 1]++;
+    } else if(chaptLevels.length > depth) {
+      chaptLevels.splice(depth, 1);
+      chaptLevels[depth - 1]++;
+    } else { // chaptLevels.length < depth
+      chaptLevels.push(1);
+    }
+
+    return {
+      ...heading,
+      chapterLevel: [ ...chaptLevels ],
+      chapterNumber: chaptLevels.join('.'),
+    };
+});
+
+---
+{ headings.length > 0 && (
+  <section class='toc'>
+    <h2 class='toc-title'>Table of Contents</h2>
+    <ul>
+      { headings.map(({ depth, slug, chapterNumber, text }) => <li class={`toc-entry toc-depth-${depth}`}>
+        <a href={`#${slug}`}><sub>{ chapterNumber }</sub>&nbsp;{ text }</a>
+      </li>)}
+    </ul>
+  </section>
+)}
+
+<style lang="scss">
+  @use '../styles/base' as *;
+  @use '../styles/colors' as *;
+
+  .toc {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+
+    border-bottom: 1px solid var(--shade-200);
+
+    h2 {
+      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
+      color: var(--shade-700);
+    }
+
+    li {
+      font-size: 1rem;
+
+      &:not(:last-child) {
+        margin-bottom: 0.1rem;
+      }
+
+      &.toc-depth-1 { margin-left: 0.5rem; }
+      &.toc-depth-2 { margin-left: 1.5rem; font-size: 0.8em; }
+      &.toc-depth-3 { margin-left: 2.5rem; font-size: 0.8em; }
+
+      a, a:visited {
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        color: $shade-600;
+        color: var(--shade-600);
+
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+          color: $shade-800;
+          color: var(--shade-800);
+
+          sub::after {
+            margin-left: 0.6em;
+            margin-right: 0;
+          }
+        }
+      }
+
+      sub {
+        display: inline-block;
+        position: relative;
+        margin-right: 0.1rem;
+
+        font-size: 0.8em;
+        vertical-align: middle;
+        color: $shade-400;
+        color: var(--shade-400);
+
+        &::after {
+          content: '▶';
+          margin: 0 0.2em;
+          font-size: 0.8em;
+          color: $shade-200;
+          color: var(--shade-200);
+
+          transition: margin 0.3s ease-out;
+        }
+      }
+    }
+  }
+</style>

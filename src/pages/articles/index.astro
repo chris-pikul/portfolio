@@ -1,0 +1,26 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Index for "Articles" providing a way to list the articles
+ * available.
+ */
+import MasterLayout from '@layouts/MasterLayout.astro';
+import Title from '@components/Title.astro';
+
+import type { ArticleFrontmatter } from 'src/article-frontmatter';
+
+const articles = await Astro.glob<ArticleFrontmatter>('./*.md');
+
+---
+<MasterLayout showName>
+  <section class='page portrait-gap'>
+    <Title text='Articles' />
+    <p>Hopefully some of these articles will interest you, as much as their topics interested me.</p>
+
+    { articles.map(({ frontmatter, url }) => (<a href={url}><article>
+      <h1>{ frontmatter.title ?? url }</h1>  
+    </article></a>)) }
+  </section>
+</MasterLayout>
