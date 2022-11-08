@@ -110,6 +110,14 @@ const thisYear = (new Date()).getFullYear();
 
   #master-content {
     padding: 0 1rem;
+
+    .portrait-gap {
+      margin-top: 5rem;
+      
+      .page-title::before, .page-title-divider {
+        display: none;
+      }
+    }
   }
 
   #master-right {
@@ -266,6 +274,10 @@ const thisYear = (new Date()).getFullYear();
 
       .page > .section-anchor {
         top: -19vh;
+      }
+
+      .portrait-gap {
+        margin-top: unset;
       }
     }
 
