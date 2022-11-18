@@ -76,7 +76,7 @@
 
       console.info(`Checking link path ${link.href}`);
       const path = new URL(link.href);
-      if(path.pathname === curPath) {
+      if(curPath.startsWith(path.pathname)) {
         console.info('Found active link');
         makeActive(link);
       }
