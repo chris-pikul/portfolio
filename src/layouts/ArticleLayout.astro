@@ -32,10 +32,6 @@ const seo:SEOProps = {
   @use '../styles/base' as *;
   @use '../styles/colors' as *;
 
-  .page-title {
-    margin-top: 5rem;
-  }
-
   .article {
     @include font-common(1rem);
     color: var(--shade-700);
@@ -61,12 +57,5 @@ const seo:SEOProps = {
     }
     h2 { font-size: 1.5em; }
     h3 { font-size: 1.3em; }
-  }
-
-  /* Landscape Switch */
-  @media screen and (min-width: 768px) and (orientation: landscape) {
-    .page-title {
-      margin-top: 19vh;
-    }
   }
 </style>

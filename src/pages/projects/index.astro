@@ -1,0 +1,36 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Index for "Projects" providing a way to list the projects
+ * available.
+ */
+import MasterLayout from '@layouts/MasterLayout.astro';
+import Title from '@components/Title.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+---
+<MasterLayout showName>
+  <section class='portrait-gap'>
+    <Title text='Projects' />
+    <p>Hopefully some of these articles will interest you, as much as their topics interested me.</p>
+
+    <div class='project-list'>
+      <ProjectCard uri='/projects/portfolio' title='Portfolio Site (This One)' tags={[ 'Web', 'Design' ]}>
+        This site was designed, and of course, developed by me.
+      </ProjectCard>
+    </div>
+
+  </section>
+</MasterLayout>
+
+<style lang="scss">
+  .project-list {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+
+    margin-top: 2rem;
+  }
+</style>
