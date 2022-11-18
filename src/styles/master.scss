@@ -186,7 +186,7 @@ p {
 @media screen and (prefers-color-scheme: 'dark') {
   :root {
     /* Dark mode just inverts everything */
-    --shade-50: #{$shade-900};
+    --shade-50: #{$shade-950};
     --shade-100: #{$shade-900};
     --shade-200: #{$shade-800};
     --shade-300: #{$shade-700};
