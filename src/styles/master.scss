@@ -45,6 +45,23 @@ html {
   color: var(--shade-800);
 
   scroll-behavior: smooth;
+
+  &.theme-dark {
+    /* Dark mode just inverts everything */
+    --shade-50: #{$shade-950};
+    --shade-100: #{$shade-900};
+    --shade-200: #{$shade-800};
+    --shade-300: #{$shade-700};
+    --shade-400: #{$shade-600};
+    --shade-500: #{$shade-500};
+    --shade-600: #{$shade-400};
+    --shade-700: #{$shade-300};
+    --shade-800: #{$shade-200};
+    --shade-900: #{$shade-100};
+
+    --bg-start: #{$bg-dark-start};
+    --bg-end: #{$bg-dark-end};
+  }
 }
 
 body {
@@ -181,25 +198,6 @@ p {
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
-}
-
-@media screen and (prefers-color-scheme: 'dark') {
-  :root {
-    /* Dark mode just inverts everything */
-    --shade-50: #{$shade-950};
-    --shade-100: #{$shade-900};
-    --shade-200: #{$shade-800};
-    --shade-300: #{$shade-700};
-    --shade-400: #{$shade-600};
-    --shade-500: #{$shade-500};
-    --shade-600: #{$shade-400};
-    --shade-700: #{$shade-300};
-    --shade-800: #{$shade-200};
-    --shade-900: #{$shade-100};
-
-    --bg-start: #{$bg-dark-start};
-    --bg-end: #{$bg-dark-end};
-  }
 }
 
 /* Landscape Switch */

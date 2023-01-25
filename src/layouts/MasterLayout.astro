@@ -26,12 +26,19 @@ const thisYear = (new Date()).getFullYear();
   <meta charset='UTF-8'>
   <SEO {...seoProps} />
 
+  <!-- Font Loading -->
   <link rel='preload' as='style' href='/fonts/SourceSans3/SourceSans3.css' />
   <link rel='stylesheet' href='/fonts/SourceSans3/SourceSans3.css' media='print' onload='this.media = "all"' />
-  
   <noscript>
     <link rel='stylesheet' href='/fonts/SourceSans3/SourceSans3.css' />
   </noscript>
+
+  <!-- Dark Mode FOUC -->
+  <script is:inline>
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches) {
+      document.documentElement.classList.add('theme-dark');
+    }
+  </script>
 </head>
 <body class='no-js'>
   <div id='master-sides'>
