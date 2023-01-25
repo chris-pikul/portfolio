@@ -8,6 +8,7 @@
  */
 import MasterLayout from '@layouts/MasterLayout.astro';
 import Title from '@components/Title.astro';
+import ArticleCard from '@components/ArticleCard.astro';
 
 import type { ArticleFrontmatter } from 'src/article-frontmatter';
 
@@ -20,18 +21,7 @@ const articles = await Astro.glob<ArticleFrontmatter>('./*.md');
     <p>Hopefully some of these articles will interest you, as much as their topics interested me.</p>
 
     <div class='article-list'>
-      { articles.map(({ frontmatter, url }) => (<a href={url} class='article-card'><article>
-        <h4 class='article-card-title'>{ frontmatter.title ?? url }</h4>
-        <div class='article-card-content'>
-          <p class='article-card-summary'>{ frontmatter.summary }</p>
-          <footer class='article-card-foot'>
-            <ul class='article-card-tags'>
-              { frontmatter.tags.map(tag => <li>{ tag }</li>)}  
-            </ul>
-            <span class='article-card-timestamp'>Published on <time datetime={frontmatter.timestamp}>{ (new Date(frontmatter.timestamp)).toLocaleString() }</time></span>
-          </footer>
-        </div>
-      </article></a>)) }
+      { articles.map(({ frontmatter, url }) => <ArticleCard url={url} {...frontmatter} />) }
     </div>
 
   </section>
@@ -47,67 +37,5 @@ const articles = await Astro.glob<ArticleFrontmatter>('./*.md');
     align-items: stretch;
 
     margin-top: 2rem;
-  }
-
-  .article-card {
-    display: block;
-    margin: 1rem;
-    padding: 0.5rem;
-
-    background: var(--shade-100);
-
-    .article-card-title {
-      margin-bottom: 0.5rem;
-      padding: 0.25rem 0.5rem 0 0.5rem;
-
-      font-size: 1.25rem;
-      line-height: 1.5em;
-
-      background: var(--shade-50);
-      color: var(--shade-700);
-    }
-
-    .article-card-content {
-      padding: 0.5rem;
-    }
-
-    .article-card-summary {
-      font-size: 1rem;
-    }
-
-    .article-card-foot {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      margin-top: 0.5rem;
-      padding-top: 0.5rem;
-
-      font-size: 0.5em;
-
-      border-top: 1px solid var(--shade-200);
-
-      .article-card-tags {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-
-        li {
-          padding: 0.5em;
-          line-height: 1em;
-          background: var(--shade-200);
-          color: var(--shade-700);
-
-          &:not(:first-child) { margin-left: 0.5em; }
-        }
-      }
-
-      .article-card-timestamp {
-        line-height: 1.5em;
-        color: var(--shade-500);
-        text-align: right;
-      }
-    }
   }
 </style>

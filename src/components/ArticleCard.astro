@@ -1,0 +1,85 @@
+---
+const {
+  url,
+  title,
+  summary,
+  tags,
+  timestamp,
+} = Astro.props;
+---
+<a href={url} class='article-card'><article>
+  <h4 class='article-card-title'>{ title ?? url }</h4>
+  <div class='article-card-content'>
+    <p class='article-card-summary'>{ summary }</p>
+    <footer class='article-card-foot'>
+      <ul class='article-card-tags'>
+        { tags.map(tag => <li>{ tag }</li>)}  
+      </ul>
+      <span class='article-card-timestamp'>Published on <time datetime={timestamp}>{ (new Date(timestamp)).toLocaleString() }</time></span>
+    </footer>
+  </div>
+</article></a>
+
+<style lang="scss">
+  .article-card {
+    display: block;
+    margin: 1rem;
+    padding: 0.5rem;
+
+    background: var(--shade-100);
+
+    .article-card-title {
+      margin-bottom: 0.5rem;
+      padding: 0.25rem 0.5rem 0 0.5rem;
+
+      font-size: 1.25rem;
+      line-height: 1.5em;
+
+      background: var(--shade-50);
+      color: var(--shade-700);
+    }
+
+    .article-card-content {
+      padding: 0.5rem;
+    }
+
+    .article-card-summary {
+      font-size: 1rem;
+    }
+
+    .article-card-foot {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+
+      font-size: 0.5em;
+
+      border-top: 1px solid var(--shade-200);
+
+      .article-card-tags {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+
+        li {
+          padding: 0.5em;
+          line-height: 1em;
+          background: var(--shade-200);
+          color: var(--shade-700);
+
+          &:not(:first-child) { margin-left: 0.5em; }
+        }
+      }
+
+      .article-card-timestamp {
+        line-height: 1.5em;
+        color: var(--shade-500);
+        text-align: right;
+      }
+    }
+  }
+</style>
