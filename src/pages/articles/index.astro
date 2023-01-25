@@ -21,7 +21,7 @@ const articles = await Astro.glob<ArticleFrontmatter>('./*.md');
     <p>Hopefully some of these articles will interest you, as much as their topics interested me.</p>
 
     <div class='article-list'>
-      { articles.map(({ frontmatter, url }) => <ArticleCard url={url} {...frontmatter} />) }
+      { articles.map(({ frontmatter, url }) => <ArticleCard uri={url} {...frontmatter} />) }
     </div>
 
   </section>

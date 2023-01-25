@@ -1,14 +1,22 @@
 ---
+interface Props {
+  uri: string;
+  title?: string;
+  summary: string;
+  tags: Array<string>;
+  timestamp: string;
+};
+
 const {
-  url,
+  uri,
   title,
   summary,
   tags,
   timestamp,
 } = Astro.props;
 ---
-<a href={url} class='article-card'><article>
-  <h4 class='article-card-title'>{ title ?? url }</h4>
+<a href={uri} class='article-card'><article>
+  <h4 class='article-card-title'>{ title ?? uri }</h4>
   <div class='article-card-content'>
     <p class='article-card-summary'>{ summary }</p>
     <footer class='article-card-foot'>
