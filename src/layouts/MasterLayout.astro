@@ -21,7 +21,7 @@ const thisYear = (new Date()).getFullYear();
 
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class='intro-trans'>
 <head>
   <meta charset='UTF-8'>
   <SEO {...seoProps} />
@@ -33,11 +33,13 @@ const thisYear = (new Date()).getFullYear();
     <link rel='stylesheet' href='/fonts/SourceSans3/SourceSans3.css' />
   </noscript>
 
-  <!-- Dark Mode FOUC -->
+  <!-- Immediate script -->
   <script is:inline>
-    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches) {
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches)
       document.documentElement.classList.add('theme-dark');
-    }
+
+    if(window.sessionStorage && window.sessionStorage.getItem('prevent-intro'))
+      document.documentElement.classList.remove('intro-trans');
   </script>
 </head>
 <body class='no-js'>
@@ -54,7 +56,7 @@ const thisYear = (new Date()).getFullYear();
     </div>
   </div>
   
-  <div id='master-content'>
+  <div id='master-content' class={Astro.props.isIndex ? 'index' : 'sub-page'}>
     <slot />
 
     <footer id='master-footer'>©{ thisYear } Chris Pikul.<br/>All Rights Reserved.</footer>
@@ -84,9 +86,11 @@ const thisYear = (new Date()).getFullYear();
     padding: 0 1rem;
     padding-top: 5rem;
 
+    &.index {
+      margin-top: -5rem;
+    }
+
     .portrait-gap {
-      margin-top: 5rem;
-      
       .page-title::before, .page-title-divider {
         display: none;
       }
@@ -245,7 +249,15 @@ const thisYear = (new Date()).getFullYear();
       max-width: 60vw;
       height: 100%;
 
-      padding-top: 19vh;
+      padding-top: 0;
+
+      &.index {
+        margin-top: unset;
+      }
+
+      &.sub-page {
+        padding-top: 19vh;
+      }
 
       .page > .section-anchor {
         top: -19vh;
@@ -266,7 +278,7 @@ const thisYear = (new Date()).getFullYear();
   }
 
   /* Dark Mode */
-  @media screen and (prefers-color-scheme: 'dark') {
+  html.theme-dark {
     #fx-overlay-grain {
       opacity: 0.2;
     }
@@ -310,5 +322,17 @@ const thisYear = (new Date()).getFullYear();
       }
       setTimeout(anim, framerate);
     }
+
+    // Bind to any link that's within our url and prevent transitions
+    document.addEventListener('click', (evt:MouseEvent) => {
+      if('sessionStorage' in window && 'tagName' in evt.target && evt.target.tagName === 'A') {
+        const link = evt.target as HTMLAnchorElement;
+        const href = new URL(link.href, window.location.origin);
+        if(href && href.origin === window.location.origin)
+          sessionStorage.setItem('prevent-intro', 'true');
+        else
+          sessionStorage.removeItem('prevent-intro');
+      }
+    }, false);
   })();
 </script>
