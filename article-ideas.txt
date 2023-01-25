@@ -1,0 +1,8 @@
+Portfolio Article Ideas
+=======================
+
+- "Noact", JSX for templating without react.
+- React built-in redux style state (context and reducer usage).
+- Persistance of react state (check the Electromatic usage).
+- Debounce, Throttle, and the Un-Race (check the Electromatic usage) functions.
+- Electromatics menu system.
