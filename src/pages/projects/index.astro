@@ -10,6 +10,10 @@ import MasterLayout from '@layouts/MasterLayout.astro';
 import Title from '@components/Title.astro';
 import ProjectCard from '@components/ProjectCard.astro';
 
+import type { ProjectFrontmatter } from 'src/project-frontmatter';
+
+const projects = await Astro.glob<ProjectFrontmatter>('./*.md');
+
 ---
 <MasterLayout showName>
   <section class='portrait-gap'>
@@ -17,10 +21,9 @@ import ProjectCard from '@components/ProjectCard.astro';
     <p>Hopefully some of these articles will interest you, as much as their topics interested me.</p>
 
     <div class='project-list'>
-      <ProjectCard uri='/projects/portfolio' title='Portfolio Site (This One)' tags={[ 'Web', 'Design' ]}>
-        This site was designed, and of course, developed by me.
-      </ProjectCard>
+      { projects.map(({ frontmatter, url }) => <ProjectCard uri={url} {...frontmatter} />) }
     </div>
+
 
   </section>
 </MasterLayout>

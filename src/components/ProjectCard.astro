@@ -9,22 +9,24 @@
 
 interface Props {
   uri: string;
-  title: string;
+  title?: string;
+  summary: string;
   tags: Array<string>;
+  timestamp: string;
 };
 
 const {
   uri,
   title,
+  summary,
   tags = [],
 } = Astro.props;
-
 ---
 <a href={uri} class='project-card'>
   <article>
     <h4 class='project-card-title'>{ title}</h4>
     <div class='project-card-content'>
-      <p class='project-card-summary'><slot /></p>
+      <p class='project-card-summary'>{ summary }</p>
       <footer class='project-card-foot'>
         <ul class='project-card-tags'>
           { tags.map(tag => <li>{ tag }</li>)}  
