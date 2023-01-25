@@ -323,6 +323,10 @@ const thisYear = (new Date()).getFullYear();
       setTimeout(anim, framerate);
     }
 
+    // Remove the intro prevention in case of manual reload
+    if('sessionStorage' in window)
+      sessionStorage.removeItem('prevent-intro');
+
     // Bind to any link that's within our url and prevent transitions
     document.addEventListener('click', (evt:MouseEvent) => {
       if('sessionStorage' in window && 'tagName' in evt.target && evt.target.tagName === 'A') {
