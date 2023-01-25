@@ -41,6 +41,7 @@ html {
   @include font-common(16pt);
 
   background: $bg-light-start;
+  background-color: var(--bg-start);
   color: $shade-800;
   color: var(--shade-800);
 
@@ -185,12 +186,12 @@ p {
   }
 }
 
-.intro-first {
+html.intro-trans .intro-first {
   opacity: 0;
   animation: fadeIn 2s ease-in-out 1 forwards;
 }
 
-.intro-second {
+html.intro-trans .intro-second {
   opacity: 0;
   animation: fadeIn 2s ease-out 1s 1 forwards;
 }
