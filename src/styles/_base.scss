@@ -13,3 +13,36 @@
   font-size: $size;
   line-height: 1.25em;
 }
+
+@mixin scrollbars($size: 1em) {
+  $half-size: $size * 0.5;
+  $quarter-size: $size * 0.25;
+  $tenth-size: $size * 0.1;
+
+  // Chrome & Safari
+  ::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+    background: var(--shade-100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--shade-300);
+    border-radius: $quarter-size;
+    box-shadow: $tenth-size $tenth-size $quarter-size rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--shade-400);
+      box-shadow: $tenth-size $tenth-size $half-size rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+      background: var(--shade-500);
+    }
+  }
+}

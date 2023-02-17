@@ -63,6 +63,8 @@ html {
     --bg-start: #{$bg-dark-start};
     --bg-end: #{$bg-dark-end};
   }
+
+  @include scrollbars(0.5rem);
 }
 
 body {

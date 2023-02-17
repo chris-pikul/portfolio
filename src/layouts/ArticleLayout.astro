@@ -59,6 +59,11 @@ const seo:SEOProps = {
     h3 { font-size: 1.3em; }
     h4 { font-size: 1.2em; }
 
+    em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
     code {
       font-family: monospace;
       font-weight: 300;
@@ -69,15 +74,20 @@ const seo:SEOProps = {
       color: var(--shade-700);
     }
 
-    .astro-code code {
-      display: inline-block;
-      padding: 0.25rem;
-      font-size: 0.8rem;
-      line-height: 1rem;
+    .astro-code {
+      max-height: 60vh;
 
-      .line {
+      code {
         display: inline-block;
-        line-height: 1em;
+
+        padding: 0.25rem;
+        font-size: 0.8rem;
+        line-height: 1rem;
+
+        .line {
+          display: inline-block;
+          line-height: 1em;
+        }
       }
     }
 
@@ -125,5 +135,8 @@ const seo:SEOProps = {
         }
       }
     }
+
+    /* Custom Scrollbars */
+    @include scrollbars(0.5em);
   }
 </style>
