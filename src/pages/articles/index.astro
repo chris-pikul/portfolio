@@ -12,7 +12,13 @@ import ArticleCard from '@components/ArticleCard.astro';
 
 import type { ArticleFrontmatter } from 'src/article-frontmatter';
 
-const articles = await Astro.glob<ArticleFrontmatter>('./*.md');
+const articles = (await Astro.glob<ArticleFrontmatter>('./*.md'))
+  .filter(({ frontmatter }) => (frontmatter && frontmatter.timestamp))
+  .sort((artA, artB) => {
+    const dateA:Date = new Date(artA.frontmatter.timestamp);
+    const dateB:Date = new Date(artB.frontmatter.timestamp);
+    return dateA < dateB ? 1 : (dateA > dateB ? -1 : 0);
+  });
 
 ---
 <MasterLayout showName>
