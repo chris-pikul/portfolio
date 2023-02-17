@@ -24,6 +24,9 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [ defaultLayoutPlugin ],
+    shikiConfig: {
+      theme: 'dark-plus'
+    },
     extendDefaultPlugins: true,
   },
 });

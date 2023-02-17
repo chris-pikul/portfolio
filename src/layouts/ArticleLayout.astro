@@ -45,7 +45,7 @@ const seo:SEOProps = {
       text-shadow: 0px 4px 0.1em rgb(0 0 0 / 0.3);
     }
 
-    h2, h3 {
+    h2, h3, h4 {
       margin-top: 2em;
       margin-bottom: 0.5em;
       padding-bottom: 0.5em;
@@ -57,5 +57,28 @@ const seo:SEOProps = {
     }
     h2 { font-size: 1.5em; }
     h3 { font-size: 1.3em; }
+    h4 { font-size: 1.2em; }
+
+    code {
+      font-family: monospace;
+      font-weight: 300;
+    }
+
+    :not(.astro-code) code {
+      background-color: var(--shade-100);
+      color: var(--shade-700);
+    }
+
+    .astro-code code {
+      display: inline-block;
+      padding: 0.25rem;
+      font-size: 0.8rem;
+      line-height: 1rem;
+
+      .line {
+        display: inline-block;
+        line-height: 1em;
+      }
+    }
   }
 </style>

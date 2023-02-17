@@ -18,7 +18,7 @@ const projects = await Astro.glob<ProjectFrontmatter>('./*.md');
 <MasterLayout showName>
   <section class='portrait-gap'>
     <Title text='Projects' />
-    <p>Hopefully some of these articles will interest you, as much as their topics interested me.</p>
+    <p>Here's some of the projects, and mostly "ideas", that I'm working on or have done in the past.</p>
 
     <div class='project-list'>
       { projects.map(({ frontmatter, url }) => <ProjectCard uri={url} {...frontmatter} />) }
