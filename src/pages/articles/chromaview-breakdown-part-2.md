@@ -285,3 +285,185 @@ Note, that the convienience function `detectIfFullscreen` can be used above in
 the `toggleFullscreen` function as well. I'm just making stuff easier here in
 this article.
 
+## Changing The Vision Mode
+
+In the main `Camera` component, the one we've been writing so far, I added the
+new state variables and a callback function for changing the Vision Mode. In
+addition, I wanted the functionality to just "tap" the screen to cycle to the
+next mode. To prepare for this, we add some state and callback functions to
+handle this.
+
+```tsx
+// What is the current Vision Mode being used?
+const [ currentVisionMode, setCurrentVisionMode ] = useState<VisionMode|null>(null);
+
+// When called, will cycle the mode to the next available one, wrapping around
+const cycleVisionMode = () => {
+  const availKeys = Object.keys(VisionModes);
+  const curInd = availKeys.findIndex(key => VisionModes[key].name === currentVisionMode?.name);
+
+  const nextInd = (curInd + 1) % availKeys.length;
+
+  setCurrentVisionMode(VisionModes[availKeys[nextInd]]);
+};
+
+// Used by the toolbar to select from a drop-down menu
+const handleSelectMode = (mode:VisionMode) => setCurrentVisionMode(mode);
+
+// Watch when vision mode changes
+useEffect(() => {
+  if(processorRef.current) 
+    processorRef.current.changeLUT(currentVisionMode?.url);
+}, [ currentVisionMode ]);
+```
+
+To break down what's happening, first I should mention, I keep all the Vision
+Modes in their own "manifest" as a constant object. This manifest is just an object
+containing unique keys, and a desription of the vision mode with the properties
+needed to operate them. One of them looks like this:
+
+```typescript
+export type VisionMode = {
+  id: string;
+  name: string;
+  classification: string;
+  url: string;
+  acuityDegrade?: number;
+  summary: string;
+  rates: [number, number];
+  animal?: boolean;
+};
+
+export const VisionModes:Record<string, VisionMode> = {
+  achromatomaly: {
+    id: 'achromatomaly',
+    name: 'Achromatomaly',
+    classification: 'Monochromatic',
+    summary: 'Weak to all colors',
+    url: './LUTs/achromatomaly.lut.png',
+    rates: [ 0, 0 ],
+  },
+};
+```
+
+The "state" we are maintaining holds the object record of our assigned Vision
+Mode. When we want to change it, we just assign a new record and notify the
+`Processor` of the change.
+
+The `cycleVisionMode` function takes all the keys of the available modes and
+finds the index of the current one. It then increments it while wrapping around
+for array index bounds, then grabs the key at that index and assigns the record
+belonging to it.
+
+`handleSelectMode` just passes the wanted record directly in to the state.
+
+The magic I suppose, is in the `useEffect` block that watches for changes to the
+`currentVisionMode` state, and then notifies the `Processor` to change the
+current LUT. From there, the `Processor` should handle the rest.
+
+These functions are passed through to the "Toolbar" components, as well as
+bound to the click event on the "overlay" component holding all the additional
+UI controls.
+
+### A Selector to Select
+
+In order to display during usage what the current Vision Mode is, as well as
+allow the user to select one, I created a custom `Selector` component which
+mimics in very simple ways a `<select />` element.
+
+I'm honestly not going to go into much detail about this because it's just
+generic React usage for the most part. I will say, that I had trouble with all
+of the click events propogating through objects on the UI portion. Leading to
+the parent objects receiving them. The parent object for these UI elements is
+actually a wrapper div that when clicked cycles the vision mode. This lead to a
+bug where tapping the selector (or any button for that matter), would cause the
+Vision Mode to cycle.
+
+To correct this, I had to modify all the click events I used and add a helper
+function to stop the event propogation.
+
+```typescript
+const noClickThrough = (evt?:MouseEvent) => {
+  // Prevent click-through
+  if(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+  }
+};
+
+// Elsewhere in components...
+const handleClick = (evt?:MouseEvent) => {
+    noClickThrough(evt);
+
+    // Perform our actual action...
+};
+```
+
+When the current vision mode bar is clicked, it opens a menu showing all the
+options. For this, it's essentially a dialog list of buttons that have some
+typography to describe what they are. When selected it uses the
+`handleSelectMode` callback that was passed to it from above to tell the main
+display component to switch the Vision Modes.
+
+## Responding to LUT Loading
+
+When I talk about the `Processor`, you'll be informed that when a Vision Mode
+is chosen, it's LUT file (a PNG image of the output color mapping) will be
+loaded asynchronously. Because it's async, I'll need to notify the user of the
+changes in state during this process. Basically the events of `Loading`,
+`Success`, and `Error`. This way, the short (hopefully) pause during loading
+doesn't make the user feel as if it's broken. Additionally, if something goes
+wrong like internet outage then the user can be notifies of such.
+
+To do this, I created a new component called `LUTState` that is passed the
+`Processor` reference we currently have.
+
+This component holds 2 state variables for `isLoading` and `hasFailed` so we can
+cover the 3 states we need. I suppose it could just be one enumerated field but
+this seemed to be the easier method at the time.
+
+I leverage a `useEffect` again here, to watch the processor reference and bind
+to the `Processor` callback hooks. Essentially the `Processor` class will have
+some properties that are used as callbacks for when the LUT state changes and
+assigning them a function allows React to know when something has happened.
+
+```typescript
+useEffect(() => {
+    // Bind the callbacks
+    if(processorRef.current) {
+      processorRef.current.onLUTLoading = handleLoading;
+      processorRef.current.onLUTFailed = handleFailed;
+      processorRef.current.onLUTSuccess = handleSuccess;
+    }
+
+    // Cleanup so we don't have stale component state in the processor
+    return () => {
+      if(processorRef.current) {
+        processorRef.current.onLUTLoading = noOp;
+        processorRef.current.onLUTFailed = noOp;
+        processorRef.current.onLUTSuccess = noOp;
+      }
+    };
+  }, [ processorRef.current ]);
+```
+
+Pretty cut and dry here. The `noOp` is just a dumb arrow function that I've used
+for no-operation. Some claim to use `Function.prototype` instead but I've heard
+of potential performance issues with that so better to be save and do:
+
+```typescript
+const noOp = () => {};
+```
+
+Not so hard. Anyways, then depending on the state the app will show a spinner
+for loading, or a message dialog for errors that basically just says to reload
+the app.
+
+## Conclusion
+
+There are some extra details I'm sure a missed or glossed over, but for that you
+can read the code itself on the [GitHub repository](https://github.com/chris-pikul/chromaview).
+
+At this point, outside the `Processor` itself, the React side should be operating
+correctly and we are ready to actually implement the functionality. To find out
+how that's done, there's [part 3](./chromaview-breakdown-part-3) to read.
