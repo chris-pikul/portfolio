@@ -17,15 +17,19 @@ function defaultLayoutPlugin() {
   };
 }
 
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     solidJs(),
   ],
   markdown: {
-    remarkPlugins: [ defaultLayoutPlugin ],
+    remarkPlugins: [ 
+      defaultLayoutPlugin,
+    ],
+    syntaxHighlight: 'shiki',
     shikiConfig: {
-      theme: 'dark-plus'
+      theme: 'css-variables',
     },
     extendDefaultPlugins: true,
   },

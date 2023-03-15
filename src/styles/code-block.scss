@@ -1,0 +1,28 @@
+
+pre.astro-code {
+  --astro-code-color-text: var(--shade-700);
+  --astro-code-color-background: rgba(255, 255, 255, 0.15);
+  --astro-code-token-constant: hsl(210deg, 20%, 40%);
+  --astro-code-token-string: hsl(35deg, 20%, 40%);
+  --astro-code-token-comment: hsl(125deg, 15%, 40%);
+  --astro-code-token-keyword: hsl(320deg, 35%, 40%);
+  --astro-code-token-parameter: hsl(190deg, 20%, 40%);
+  --astro-code-token-function: hsl(45deg, 35%, 35%);
+  --astro-code-token-string-expression: hsl(20deg, 30%, 40%);
+  --astro-code-token-punctuation: var(--shade-600);
+  --astro-code-token-link: hsl(98, 35%, 40%);
+}
+
+.theme-dark pre.astro-code {
+  --astro-code-color-text: var(--shade-700);
+  --astro-code-color-background: rgba(0, 0, 0, 0.1);
+  --astro-code-token-constant: hsl(210deg, 20%, 50%);
+  --astro-code-token-string: hsl(35deg, 20%, 50%);
+  --astro-code-token-comment: hsl(125deg, 15%, 40%);
+  --astro-code-token-keyword: hsl(320deg, 35%, 50%);
+  --astro-code-token-parameter: hsl(190deg, 20%, 50%);
+  --astro-code-token-function: hsl(45deg, 35%, 50%);
+  --astro-code-token-string-expression: hsl(20deg, 30%, 50%);
+  --astro-code-token-punctuation: var(--shade-600);
+  --astro-code-token-link: hsl(98, 35%, 50%);
+}
