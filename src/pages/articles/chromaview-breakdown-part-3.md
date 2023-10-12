@@ -13,25 +13,23 @@ tags:
 ---
 # Chromaview - Development Breakdown - Part 3
 
-Chromaview started as an experiment in using web technology (JavaScript) to
-deliver an augmented reality view of the world through different color-blind
-modes.
-
-I originally became interested in this in late 2018 after learning one of my
-best friends was color-blind, and wondering what the world might look like to
-them. I was also using this as an excuse to play with new Web Standards and
-Rust/WASM.
-
-The idea was simple, use the device's camera (preferable environment facing
-on mobile) to get a view of the world. Then apply a color filter to change the
-visible spectrum to color-blindness. Of course, there are many different modes
-of color-blindness, so some ability to switch the filter was needed. So a basic
-UI to change the mode. Either way, present the results as a full-document or
-full-screen canvas to have the most immersion as possible.
-
-## Introduction
+[Chromaview](/projects/chromaview) started as an experiment in using web
+technology (JavaScript) to deliver an augmented reality view of the world
+through different color-blind modes.
 
 This is a series intended to be a development breakdown of the process of
-making Chromaview. In this part, I'll talk about the very first version which
-was a working prototype, and some lessons learned about it. In future articles,
-I'll discuss the new version and the improvements I've made.
+making Chromaview. In this part, I'll talk about scaffolding a new version of
+the app from scratch, using a modern toolkit.
+
+You can check out [part 1](./chromaview-breakdown-part-1) for a write-up on
+the first version of this app. Additionally, [part 2](./chromaview-breakdown-part-2)
+talks about scaffolding the new app with React and getting ready for the
+processing.
+
+## Starting The Processor
+
+In the [previous](./chromaview-breakdown-part-2) article I mention a mysterious
+class called `Processor` that is responsible for handling the actual work. React
+hands it a reference to the `Canvas`, as well as some bindings for events such
+as changing the mode, and notifying on resize events.
+
