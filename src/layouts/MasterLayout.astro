@@ -7,8 +7,6 @@
  */
 import { SEO } from 'astro-seo';
 
-import '@styles/master.scss';
-
 import MakeSEO from 'src/seo';
 
 import Navigation from '@components/SiteNavigation.astro';
@@ -72,6 +70,9 @@ const thisYear = (new Date()).getFullYear();
 <style lang="scss" is:global>
   @use '../styles/base' as *;
   @use '../styles/colors' as *;
+
+  @import '../styles/reset.css';
+  @import '../styles/master.scss';
 
   #master-sides {
     position: fixed;

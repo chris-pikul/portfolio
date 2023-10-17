@@ -20,7 +20,11 @@ const seo:SEOProps = {
 };
 ---
 <MasterLayout seo={seo} showName>
-  <Title text={frontmatter.title} />
+  <Title text={frontmatter.heading ?? frontmatter.title} />
+
+  { frontmatter.subheading && (
+    <h2 class="subtitle">{ frontmatter.subheading }{ frontmatter.part && <span class="subtitle-part">Part { frontmatter.part }</span>}</h2>
+  ) }
 
   <article class='article'>
     <TableOfContents headings={headings} />
@@ -34,6 +38,23 @@ const seo:SEOProps = {
 
   @import '../styles/code-block';
 
+  .subtitle {
+      font-size: 2rem;
+      line-height: 1.1em;
+      text-wrap: balance;
+
+      .subtitle-part {
+        font-size: 1.2rem;
+        color: var(--shade-600);
+        display: block;
+      }
+
+      &::after {
+        content: '';
+        clear: both;
+      }
+  }
+
   .article {
     @include font-common(1rem);
     color: var(--shade-700);
@@ -42,6 +63,7 @@ const seo:SEOProps = {
       margin-bottom: 2rem;
 
       font-size: 2em;
+      line-height: 1.1em;
       font-weight: normal;
       color: var(--shade-800);
       text-shadow: 0px 4px 0.1em rgb(0 0 0 / 0.3);
@@ -52,6 +74,7 @@ const seo:SEOProps = {
       margin-bottom: 0.5em;
       padding-bottom: 0.5em;
 
+      line-height: 1.1em;
       font-weight: normal;
       color: var(--shade-800);
 

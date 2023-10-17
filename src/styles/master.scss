@@ -1,8 +1,6 @@
 @use './base' as *;
 @use './colors' as *;
 
-@import './reset.css';
-
 /* Root Variables */
 :root {
 
@@ -78,6 +76,10 @@ body {
 
   background: linear-gradient(175deg, var(--bg-start) 5%, var(--bg-end) 95%);
   background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
 }
 
 /* A11y hiding */
@@ -166,7 +168,7 @@ p {
       content: '';
       display: block;
       position: absolute;
-      bottom: -2px;
+      bottom: 0;
       left: -2px;
       right: -2px;
       height: 1px;
