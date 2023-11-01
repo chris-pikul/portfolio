@@ -46,8 +46,8 @@ const headings:Array<HeadingEx> = rawHeadings.filter(heading => heading.depth > 
   <section class='toc'>
     <h2 class='toc-title'>Table of Contents</h2>
     <ul>
-      { headings.map(({ depth, slug, chapterNumber, text }) => <li class={`toc-entry toc-depth-${depth}`}>
-        <a href={`#${slug}`}><sub>{ chapterNumber }</sub>&nbsp;{ text }</a>
+      { headings.map((head: any) => <li class={`toc-entry toc-depth-${head.depth}`}>
+        <a href={`#${head.slug}`}><sub>{ head.chapterNumber }</sub>&nbsp;{ head.text }</a>
       </li>)}
     </ul>
   </section>

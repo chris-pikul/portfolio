@@ -64,6 +64,21 @@ const thisYear = (new Date()).getFullYear();
   <div id='fx-overlay-vignette'></div>
 
   <script is:inline>document.body.classList.remove('no-js');</script>
+  <script type="module" is:inline is:raw>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAqr-6IF1-o2zHP9Sc4V88ypQr6E3aSVSc",
+      authDomain: "chris-portfolio-403219.firebaseapp.com",
+      projectId: "chris-portfolio-403219",
+      storageBucket: "chris-portfolio-403219.appspot.com",
+      messagingSenderId: "2390896731",
+      appId: "1:2390896731:web:a198d9825e54a4531dcf7e",
+      measurementId: "G-GBHCNVK2FY"
+    };
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>
 </html>
 
