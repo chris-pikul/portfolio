@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,15 +34,9 @@ jobs:
 
       - name: Astro Build
         run: pnpm run build
-  
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+      
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          entryPoint: $GITHUB_WORKSPACE
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           channelId: live
