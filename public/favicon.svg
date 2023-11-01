@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+    <path fill="black" stroke="white" stroke-width="1px" d="M154 189v124h83v41H117V148h120v41Zm229 81h-84v84h-36V146h120Zm-31-81h-53v41h53ZM170 57 57 170v160l113 113h160l113-113V170L330 57Zm176-38 135 135v192L346 481H154L19 346V154L154 19Z"/>
+    <style>@media (prefers-color-scheme: dark) { path { fill: white; stroke: black; stroke-width: 1px; } }</style>
+</svg>

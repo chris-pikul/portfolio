@@ -17,6 +17,7 @@ const { frontmatter, headings } = Astro.props as MarkdownArticle;
 
 const seo:SEOProps = {
   title: `Chris Pikul - ${frontmatter.title}`,
+  description: frontmatter.summary,
 };
 ---
 <MasterLayout seo={seo} showName>
