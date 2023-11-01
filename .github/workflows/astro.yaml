@@ -47,6 +47,7 @@ jobs:
     steps:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          entryPoint: ${{ env.BUILD_PATH }}
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           channelId: live
