@@ -15,9 +15,7 @@
     "noEmit": true,
     "types": ["astro/client"],
     "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "importsNotUsedAsValues": "error",
-
+    "jsxImportSource": "solid-js"
   },
   "include": [ "src/**/*" ],
   "exclude": [ "node_modules" ]
