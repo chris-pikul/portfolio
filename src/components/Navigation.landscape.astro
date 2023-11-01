@@ -1,0 +1,242 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Provides the master navigation for the whole site, to be displayed
+ * at the top of any page.
+ * 
+ * This version is for landscape (desktop/tablet)
+ */
+---
+<nav id='master-nav-landscape' class='landscape intro-second'>
+  <ul class='nav-links'>
+    <li class='nav-link'><a href='/#about'>About</a></li>
+    <li class='nav-link'><a href='/projects'>Projects</a></li>
+    <li class='nav-link'><a href='/articles'>Articles</a></li>
+  </ul>
+  <div class='nav-dividers'>
+    <div class='separator separator-round' />
+    <div id='nav-landscape-active' class='separator' />
+  </div>
+</nav>
+
+<script>
+  function hookLandscape() {
+    console.info('Hooking up master navigation bar for landscape mode');
+
+    const masterNav = document.getElementById('master-nav-landscape');
+    if(!masterNav)
+      return console.error(`No master navigation element present`);
+
+    const activeSlider = document.getElementById('nav-landscape-active');
+    if(!activeSlider)
+      return console.error(`No navigation active slider available`);
+    activeSlider.style.display = 'block';
+
+    const parentRect = masterNav.getBoundingClientRect();
+
+    let activeLink:HTMLAnchorElement;
+
+    const moveTo = (target?:HTMLElement) => {
+      if(target) {
+        const rect = target.getBoundingClientRect();
+        console.info(`Moving active slider to link target ${target.innerText}`, rect);
+        
+        activeSlider.style.opacity = '1';
+        activeSlider.style.top = `${rect.top - parentRect.top}px`;
+        activeSlider.style.height = `${rect.height}px`;
+      } else if(activeLink) {
+        // Return to active
+        moveTo(activeLink);
+      } else {
+        // No active link
+        activeSlider.style.opacity = '0';
+      }
+    };
+
+    const makeActive = (link:HTMLAnchorElement) => {
+      if(activeLink)
+        activeLink.classList.remove('active');
+      
+      link.classList.add('active');
+      activeLink = link;
+      moveTo(link);
+    };
+
+    const hoverStart = (evt:MouseEvent) => {
+      moveTo(evt.target as HTMLElement);
+    };
+    const hoverEnd = () => moveTo();
+
+    // Find the current page's active link
+    const curPath = document.location.pathname;
+    console.info(`Current path = ${curPath}`);
+
+    masterNav.querySelectorAll('a').forEach(link => {
+      link.className = '';
+
+      console.info(`Checking link path ${link.href}`);
+      const path = new URL(link.href);
+      if(curPath.startsWith(path.pathname)) {
+        console.info('Found active link');
+        makeActive(link);
+      }
+
+      // Bind events for links
+      link.addEventListener('mouseenter', hoverStart);
+      link.addEventListener('mouseleave', hoverEnd);
+      link.addEventListener('click', hoverStart);
+    });
+
+    // Make doc resize refresh the active link slider
+    window.addEventListener('resize', () => moveTo(activeLink));
+  }
+
+  // Pseudo-document-ready event
+  (() => hookLandscape())();
+</script>
+
+<style lang="scss" is:global>
+  @use '../styles/_base' as *;
+  @use '../styles/_colors' as *;
+
+  #master-nav-landscape {
+    flex-flow: row nowrap;
+    align-items: stretch;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 2.25rem;
+    min-width: 2.25rem;
+    height: 62vh;
+    min-height: 375px;
+
+    margin: 0 2rem 0 0;
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    color: $shade-300;
+    color: var(--shade-300);
+
+    .nav-links {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      flex: 1;
+      padding: 1rem 0.5rem 1rem 0;
+
+      // The wrapper holding the link
+      .nav-link {
+        position: relative;
+        min-width: 1rem;
+        height: 0;
+
+        // Adjust transforms for links here
+        &:first-child > a {
+          transform: rotate(270deg) translateX(-100%);
+        }
+        > a {
+          transform: rotate(270deg) translateX(-50%);
+        }
+        &:last-child > a {
+          transform: rotate(270deg);
+        }
+      }
+
+      a, a:visited {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        transform-origin: 0 0;
+        transform: rotate(270deg);
+
+        box-sizing: content-box;
+        padding: 0 0.5em;
+        @include font-common();
+        text-align: center;
+
+        &:first-child { text-align: left; }
+        &:last-child { text-align: right; }
+
+        &:hover {
+          color: $shade-400;
+          color: var(--shade-400);
+        }
+
+        &:active {
+          color: $shade-500;
+          color: var(--shade-500);
+        }
+
+        &.active {
+          color: $shade-600;
+          color: var(--shade-600);
+        }
+      }
+    }
+
+    .nav-dividers {
+      display: block;
+      position: relative;
+
+      width: 14px;
+      height: 100%;
+
+      .separator {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 2px;
+        height: 100%;
+
+        margin: 0 6px;
+
+        &::before {
+          top: 0;
+          right: auto;
+          left: -3px;
+          bottom: auto;
+        }
+
+        &::after {
+          top: auto;
+          right: auto;
+          left: -3px;
+          bottom: 0;
+        }
+      }
+
+      #nav-landscape-active {
+        display: none;
+
+        top: 1rem;
+        height: 1rem;
+
+        color: $shade-400;
+        color: var(--shade-400);
+        opacity: 0;
+
+        transition: top ease-in 0.3s, height ease-out 0.3s, opacity ease 1s;
+
+        &::before, &::after {
+          left: -2px;
+          width: 6px;
+          height: 6px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-device-width: 768px) and (orientation: landscape) {
+    #master-nav-landscape {
+      display: flex;
+    }
+  }
+</style>

@@ -1,35 +1,37 @@
 ---
-/*
- * Index for articles, that is separate from the main home-page.
- * This is mostly for site-map fill out
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Index for "Articles" providing a way to list the articles
+ * available.
  */
- import GeneralLayout from '@layouts/GeneralLayout.astro';
- import Section from '@components/Section.astro';
- import Transition from '@components/Transition.astro';
- import ArticleCard from '@components/ArticleCard.astro';
+import MasterLayout from '@layouts/MasterLayout.astro';
+import Title from '@components/Title.astro';
+import ArticleCard from '@components/ArticleCard.astro';
 
- import Articles from '../../article-list.json';
+import type { ArticleFrontmatter } from 'src/article-frontmatter';
 
- const top = Articles.slice(0, 3);
- const all = Articles.sort((a, b) => (new Date(b.timestamp)).getTime() - (new Date(a.timestamp)).getTime() );
+const articles = (await Astro.glob<ArticleFrontmatter>('./*.md'))
+  .filter(({ frontmatter }) => (frontmatter && frontmatter.timestamp))
+  .sort((artA, artB) => {
+    const dateA:Date = new Date(artA.frontmatter.timestamp);
+    const dateB:Date = new Date(artB.frontmatter.timestamp);
+    return dateA < dateB ? 1 : (dateA > dateB ? -1 : 0);
+  });
+
 ---
-<GeneralLayout title='Articles'>
-  <p slot='hero-content'>Here are some articles and devlogs I've written</p>
+<MasterLayout showName>
+  <section class='portrait-gap'>
+    <Title text='Articles' />
+    <p>Hopefully some of these articles will interest you, as much as their topics interested me.</p>
 
-  <Transition from='white' to='primary' />
+    <div class='article-list'>
+      { articles.map(({ frontmatter, url }) => <ArticleCard uri={url} {...frontmatter} />) }
+    </div>
 
-  <Section title='Showcase' color='primary' next='secondary'>
-    <ul class='article-list'>
-      { top.map(article => <li><ArticleCard {...article} /></li>) }
-    </ul>
-  </Section>
-
-  <Section title='All Articles' color='secondary'>
-    <ul class='article-list'>
-      { all.map(article => <li><ArticleCard {...article} /></li>) }
-    </ul>
-  </Section>
-</GeneralLayout>
+  </section>
+</MasterLayout>
 
 <style lang="scss">
   @use '../../styles/_base' as *;
@@ -38,25 +40,8 @@
   .article-list {
     display: flex;
     flex-flow: column nowrap;
-    list-style: none;
+    align-items: stretch;
 
-    li {
-      margin-bottom: 1rem;
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  @media screen and (min-device-width: 1440px) {
-    .article-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-
-      li {
-        margin-bottom: 0;
-      }
-    }
+    margin-top: 2rem;
   }
 </style>

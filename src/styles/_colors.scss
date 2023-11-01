@@ -1,61 +1,20 @@
-/* Defines the color palette */
+$shade-50: hsl(331deg 4% 91%);
+$shade-100: hsl(356deg 7% 85%);
+$shade-200: hsl(14deg 4% 76%);
+$shade-300: hsl(36deg 8% 63%);
+$shade-400: hsl(54deg 5% 53%);
+$shade-500: hsl(90deg 6% 42%);
+$shade-600: hsl(184deg 8% 33%);
+$shade-700: hsl(184deg 9% 26%);
+$shade-800: hsl(184deg 8% 19%);
+$shade-900: hsl(194deg 8% 13%);
+$shade-950: hsl(200deg 7% 8%);
 
-$clr-white: hsl(32deg, 29%, 91%);
-$clr-shade-100: hsl(31deg, 21%, 84%);
-$clr-shade-200: hsl(32deg, 18%, 75%);
-$clr-shade-300: hsl(34deg, 15%, 65%);
-$clr-shade-400: hsl(35deg, 11%, 55%);
-$clr-shade-500: hsl(35deg, 9%, 47%);
-$clr-shade-600: hsl(35deg, 10%, 38%);
-$clr-shade-700: hsl(35deg, 14%, 23%);
-$clr-shade-800: hsl(34deg, 17%, 14%);
-$clr-shade-900: hsl(34deg, 19%, 11%);
-$clr-black: hsl(34deg, 20%, 8%);
+$bg-light-start: hsl(349deg 7% 85%);
+$bg-light-end: hsl(4deg 3% 69%);
 
-$clr-primary-100: hsl(25deg, 65%, 56%);
-$clr-primary-200: hsl(25deg, 65%, 51%);
-$clr-primary-300: hsl(25deg, 71%, 44%);
-$clr-primary-400: hsl(25deg, 75%, 39%);
-$clr-primary-500: hsl(25deg, 75%, 35%);
-$clr-primary-600: hsl(25deg, 79%, 28%);
-$clr-primary-700: hsl(25deg, 76%, 25%);
+$bg-dark-start: hsl(184deg 9% 13%);
+$bg-dark-end: hsl(209deg 7% 6%);
 
-$clr-secondary-100: hsl(155deg, 53%, 55%);
-$clr-secondary-200: hsl(155deg, 48%, 49%);
-$clr-secondary-300: hsl(155deg, 48%, 45%);
-$clr-secondary-400: hsl(155deg, 49%, 40%);
-$clr-secondary-500: hsl(155deg, 52%, 37%);
-$clr-secondary-600: hsl(155deg, 54%, 30%);
-$clr-secondary-700: hsl(155deg, 55%, 23%);
-
-$clr-tertiary-100: hsl(58deg, 66%, 66%);
-$clr-tertiary-200: hsl(58deg, 60%, 58%);
-$clr-tertiary-300: hsl(58deg, 60%, 49%);
-$clr-tertiary-400: hsl(58deg, 63%, 45%);
-$clr-tertiary-500: hsl(58deg, 67%, 40%);
-$clr-tertiary-600: hsl(58deg, 70%, 35%);
-$clr-tertiary-700: hsl(58deg, 74%, 27%);
-
-$clr-primary-dark-100: hsl(25deg, 68%, 47%);
-$clr-primary-dark-200: hsl(25deg, 70%, 43%);
-$clr-primary-dark-300: hsl(25deg, 71%, 38%);
-$clr-primary-dark-400: hsl(25deg, 73%, 35%);
-$clr-primary-dark-500: hsl(25deg, 74%, 31%);
-$clr-primary-dark-600: hsl(25deg, 72%, 27%);
-$clr-primary-dark-700: hsl(25deg, 75%, 16%);
-
-$clr-secondary-dark-100: hsl(155deg, 47%, 47%);
-$clr-secondary-dark-200: hsl(155deg, 44%, 44%);
-$clr-secondary-dark-300: hsl(155deg, 39%, 38%);
-$clr-secondary-dark-400: hsl(155deg, 38%, 32%);
-$clr-secondary-dark-500: hsl(155deg, 36%, 29%);
-$clr-secondary-dark-600: hsl(155deg, 37%, 24%);
-$clr-secondary-dark-700: hsl(155deg, 28%, 17%);
-
-$clr-tertiary-dark-100: hsl(58deg, 57%, 49%);
-$clr-tertiary-dark-200: hsl(58deg, 61%, 43%);
-$clr-tertiary-dark-300: hsl(58deg, 58%, 39%);
-$clr-tertiary-dark-400: hsl(58deg, 57%, 35%);
-$clr-tertiary-dark-500: hsl(58deg, 58%, 30%);
-$clr-tertiary-dark-600: hsl(58deg, 62%, 25%);
-$clr-tertiary-dark-700: hsl(58deg, 65%, 18%);
+$vignette-start: hsl(0deg 0% 100%);
+$vignette-end: hsl(45deg 10% 15%);

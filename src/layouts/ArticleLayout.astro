@@ -1,0 +1,204 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Layout that get's applied to ALL .md articles in the articles
+ * directory.
+ */
+import MasterLayout from './MasterLayout.astro';
+import Title from '@components/Title.astro';
+import TableOfContents from '@components/TableOfContents.astro';
+
+import type { Props as SEOProps } from 'astro-seo';
+import type { MarkdownArticle } from 'src/article-frontmatter';
+
+const { frontmatter, headings } = Astro.props as MarkdownArticle;
+
+const seo:SEOProps = {
+  title: `Chris Pikul - ${frontmatter.title}`,
+};
+---
+<MasterLayout seo={seo} showName>
+  <Title text={frontmatter.heading ?? frontmatter.title} />
+
+  { frontmatter.subheading && (
+    <h2 class="subtitle">{ frontmatter.subheading }{ frontmatter.part && <span class="subtitle-part">Part { frontmatter.part }</span>}</h2>
+  ) }
+
+  <article class='article'>
+    <TableOfContents headings={headings} />
+    <slot />
+  </article>
+</MasterLayout>
+
+<style lang="scss" is:global>
+  @use '../styles/base' as *;
+  @use '../styles/colors' as *;
+
+  @import '../styles/code-block';
+
+  .subtitle {
+      font-size: 2rem;
+      line-height: 1.1em;
+      text-wrap: balance;
+
+      .subtitle-part {
+        font-size: 1.2rem;
+        color: var(--shade-600);
+        display: block;
+      }
+
+      &::after {
+        content: '';
+        clear: both;
+      }
+  }
+
+  .article {
+    @include font-common(1rem);
+    color: var(--shade-700);
+
+    h1 {
+      margin-bottom: 2rem;
+
+      font-size: 2em;
+      line-height: 1.1em;
+      font-weight: normal;
+      color: var(--shade-800);
+      text-shadow: 0px 4px 0.1em rgb(0 0 0 / 0.3);
+    }
+
+    h2, h3, h4 {
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+      padding-bottom: 0.5em;
+
+      line-height: 1.1em;
+      font-weight: normal;
+      color: var(--shade-800);
+
+      border-bottom: 1px solid var(--shade-200);
+    }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.3em; }
+    h4 { font-size: 1.2em; }
+
+    em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    :not(.toc) ul, & > ul {
+      display: block;
+      margin: 1em 0.25em;
+      padding: 0;
+
+      list-style: none;
+
+      li {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        margin: 0;
+        margin-bottom: 0.5em;
+        padding: 0;
+
+        font-size: 1em;
+
+        &::before {
+          content: '•';
+          display: inline-block;
+          margin-right: 0.25em;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    code {
+      font-family: monospace;
+      font-weight: 300;
+    }
+
+    :not(.astro-code) code {
+      background-color: var(--shade-100);
+      color: var(--shade-700);
+    }
+
+    .astro-code {
+      max-height: 60vh;
+
+      code {
+        display: inline-block;
+
+        padding: 0.25rem;
+        font-size: 0.8rem;
+        line-height: 1rem;
+
+        .line {
+          display: inline-block;
+          line-height: 1em;
+        }
+      }
+    }
+
+    details {
+      display: block;
+      list-style: none;
+
+      margin: 1rem 0;
+      padding: 0.25rem;
+
+      background-color: var(--shade-100);
+
+      & > summary:first-of-type {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        font-size: 1.2em;
+        cursor: pointer;
+
+        &::before {
+          content: '▶';
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          margin-right: 0.25em;
+          
+          font-size: 1rem;
+          line-height: 1em;
+          color: var(--shade-300);
+
+          transform: rotate(0deg);
+          transform-origin: center;
+          transition: transform 0.5s ease;
+        }
+      }
+
+      &[open] > summary:first-of-type {
+        margin-bottom: 0.5em;
+        border-bottom: 1px solid var(--shade-200);
+
+        &::before {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    sup {
+      font-size: 0.7em;
+      line-height: 1em;
+      vertical-align: super;
+    }
+
+    /* Custom Scrollbars */
+    @include scrollbars(0.5em);
+  }
+</style>

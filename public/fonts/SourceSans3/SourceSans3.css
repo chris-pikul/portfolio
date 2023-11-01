@@ -1,0 +1,33 @@
+/**
+ *  Source Sans 3 by Adobe
+ *  
+ *  Original: https://github.com/adobe-fonts/source-sans
+ *  License: /fonts/SourceSans3/LICENSE.md
+ *
+ *  Copyright 2010-2020 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'. 
+ *  All Rights Reserved. Source is a trademark of Adobe in the United States and/or other countries.
+ *
+ *  This Font Software is licensed under the SIL Open Font License, Version 1.1.
+ */
+
+/* Variable font */
+@font-face{
+  font-family: 'Source Sans 3 VF';
+  font-weight: 200 900;
+  font-style: normal;
+  font-stretch: normal;
+  src: url('/fonts/SourceSans3/SourceSans3VF.woff2') format('woff2 supports variations'),
+      url('/fonts/SourceSans3/SourceSans3VF.woff2') format('woff2') tech('variations'),
+      url('/fonts/SourceSans3/SourceSans3VF.woff2') format('woff2-variations');
+}
+
+/* Static Font, Light, Basic Latin subset */
+@font-face {
+  font-family: 'Source Sans 3';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/fonts/SourceSans3/SourceSans3-Light-BasicLatin.woff2') format('woff2'),
+    url('/fonts/SourceSans3/SourceSans3-Light-BasicLatin.woff') format('woff'),
+    url('/fonts/SourceSans3/SourceSans3-Light-BasicLatin.ttf') format('truetype');
+  unicode-range: U+00-7F;
+}

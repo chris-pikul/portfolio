@@ -1,0 +1,358 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Master layout that should wrap or be the derivitive of all other layouts
+ */
+import { SEO } from 'astro-seo';
+
+import MakeSEO from 'src/seo';
+
+import Navigation from '@components/SiteNavigation.astro';
+
+// Prepare objects for SEO injection, using optional overrides provided by the page
+const seoProps = MakeSEO(Astro.props.seo);
+
+// Copyright injection
+const thisYear = (new Date()).getFullYear();
+
+---
+<!DOCTYPE html>
+<html lang="en" class='intro-trans'>
+<head>
+  <meta charset='UTF-8'>
+  <SEO {...seoProps} />
+
+  <!-- Font Loading -->
+  <link rel='preload' as='style' href='/fonts/SourceSans3/SourceSans3.css' />
+  <link rel='stylesheet' href='/fonts/SourceSans3/SourceSans3.css' media='print' onload='this.media = "all"' />
+  <noscript>
+    <link rel='stylesheet' href='/fonts/SourceSans3/SourceSans3.css' />
+  </noscript>
+
+  <!-- Immediate script -->
+  <script is:inline>
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches)
+      document.documentElement.classList.add('theme-dark');
+
+    if(window.sessionStorage && window.sessionStorage.getItem('prevent-intro'))
+      document.documentElement.classList.remove('intro-trans');
+  </script>
+</head>
+<body class='no-js'>
+  <div id='master-sides'>
+    <Navigation />
+
+    <div id='master-right' class='landscape intro-second'>
+      <div class='separator separator-round' />
+      { Astro.props.showName && (
+        <div id='master-right-content'>
+          <span><h1>Chris Pikul</h1></span>
+        </div>
+      )}
+    </div>
+  </div>
+  
+  <div id='master-content' class={Astro.props.isIndex ? 'index' : 'sub-page'}>
+    <slot />
+
+    <footer id='master-footer'>©{ thisYear } Chris Pikul.<br/>All Rights Reserved.</footer>
+  </div>
+
+  <div id='fx-overlay-grain'></div>
+  <div id='fx-overlay-vignette'></div>
+
+  <script is:inline>document.body.classList.remove('no-js');</script>
+  <script type="module" is:inline is:raw>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAqr-6IF1-o2zHP9Sc4V88ypQr6E3aSVSc",
+      authDomain: "chris-portfolio-403219.firebaseapp.com",
+      projectId: "chris-portfolio-403219",
+      storageBucket: "chris-portfolio-403219.appspot.com",
+      messagingSenderId: "2390896731",
+      appId: "1:2390896731:web:a198d9825e54a4531dcf7e",
+      measurementId: "G-GBHCNVK2FY"
+    };
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</body>
+</html>
+
+<style lang="scss" is:global>
+  @use '../styles/base' as *;
+  @use '../styles/colors' as *;
+
+  @import '../styles/reset.css';
+  @import '../styles/master.scss';
+
+  #master-sides {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    z-index: 9000;
+  }
+
+  #master-content {
+    padding: 0 1rem;
+    padding-top: 5rem;
+
+    &.index {
+      margin-top: -5rem;
+    }
+
+    .portrait-gap {
+      .page-title::before, .page-title-divider {
+        display: none;
+      }
+    }
+  }
+
+  #master-right {
+    flex-flow: row nowrap;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 2.25rem;
+    height: 62vh;
+    min-height: 375px;
+
+    margin: 0 0 0 2rem;
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    color: $shade-300;
+    color: var(--shade-300);
+
+    #master-right-content {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-around;
+      align-items: flex-start;
+
+      position: relative;
+      padding-left: 0.25rem;
+
+      span {
+        position: relative;
+        min-width: 1rem;
+        height: 0;
+
+        h1 {
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          margin: 0;
+          padding: 0;
+
+          transform: rotate(90deg) translateX(-50%) translateY(-100%);
+          transform-origin: 0 0;
+
+          @include font-common(1.2rem);
+          line-height: 1em;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .separator {
+      width: 2px;
+      height: 100%;
+      margin: 0 6px;
+
+      &::before {
+        top: 0;
+        right: auto;
+        bottom: auto;
+        left: -3px;
+      }
+
+      &::after {
+        top: auto;
+        right: auto;
+        bottom: 0;
+        left: -3px;
+      }
+    }
+  }
+  
+  /* Site-wide footer */
+  #master-footer {
+
+    /* Line-up with bottom */
+    margin-top: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+
+    @include font-code(0.7rem);
+    text-align: center;
+    color: $shade-400;
+    color: var(--shade-400);
+
+    border-top: 1px solid var(--shade-300);
+  }
+
+  #fx-overlay-grain, #fx-overlay-vignette {
+    display: none;
+    pointer-events: none;
+  }
+
+  @supports (mix-blend-mode: overlay) {
+    #fx-overlay-grain {
+      display: block;
+      pointer-events: none;
+  
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 8000;
+  
+      background: url('/img/noise-grain-512.png') top left repeat;
+      mix-blend-mode: color-burn;
+      opacity: 1;
+    }
+  
+    #fx-overlay-vignette {
+      display: block;
+      pointer-events: none;
+  
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 9000;
+  
+      background: radial-gradient(farthest-corner at center, $vignette-start 30%, $vignette-end);
+      mix-blend-mode: color-burn;
+      opacity: 0.3;
+    }
+  }
+
+  /* Landscape Switch */
+  @media screen and (min-device-width: 768px) and (orientation: landscape) {
+    #master-sides {
+      top: 50%;
+      right: unset;
+      bottom: unset;
+      left: 50%;
+      width: 100%;
+      max-width: 75vw;
+      height: 62vh;
+      min-height: 375px;
+      z-index: 9000;
+
+      transform: translate(-50%, -50%);
+
+      pointer-events: none;
+
+      & * { pointer-events: all; }
+    }
+
+    #master-content {
+      position: relative;
+      width: 100%;
+      max-width: 60vw;
+      height: 100%;
+
+      padding-top: 0;
+
+      &.index {
+        margin-top: unset;
+      }
+
+      &.sub-page {
+        padding-top: 19vh;
+      }
+
+      .page > .section-anchor {
+        top: -19vh;
+      }
+
+      .portrait-gap {
+        margin-top: unset;
+      }
+    }
+
+    #master-right {
+      display: flex;
+    }
+
+    #master-footer {
+      padding-bottom: 19vh;
+    }
+  }
+
+  /* Dark Mode */
+  html.theme-dark {
+    #fx-overlay-grain {
+      opacity: 0.2;
+    }
+
+    #fx-overlay-vignette {
+      background: radial-gradient(farthest-corner at center, rgba(0, 0, 0, 0) 50%, $vignette-end);
+      opacity: 0.15;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    // Web-font loading strategy
+    const markFontsLoaded = () => document.documentElement.classList.add('fonts-loaded');
+    if(sessionStorage && sessionStorage.fontsLoaded) {
+      markFontsLoaded();
+    } else if('fonts' in document) {
+      Promise.all([
+        document.fonts.load('300 1em "Source Sans 3"')
+      ]).then(() => {
+        if(sessionStorage)
+          sessionStorage.fontsLoaded = true;
+      }).catch(err => {
+        console.error(`error loading web-fonts: ${err}`);
+      }).finally(markFontsLoaded);
+    }
+
+    // Animate the grain effect
+    const grainEl = document.getElementById('fx-overlay-grain');
+    if(grainEl) {
+      const origOpacity = parseFloat(getComputedStyle(grainEl).opacity);
+      const framerate = (1000 / 12);
+      const randPerc = () => Math.trunc(Math.random() * 100) + '%';
+      const anim = () => {
+        grainEl.style.backgroundPositionX = randPerc();
+        grainEl.style.backgroundPositionY = randPerc();
+        grainEl.style.opacity = (origOpacity - (Math.random() * 0.1)).toPrecision(2);
+
+        setTimeout(anim, framerate);
+      }
+      setTimeout(anim, framerate);
+    }
+
+    // Remove the intro prevention in case of manual reload
+    if('sessionStorage' in window)
+      sessionStorage.removeItem('prevent-intro');
+
+    // Bind to any link that's within our url and prevent transitions
+    document.addEventListener('click', (evt:MouseEvent) => {
+      if('sessionStorage' in window && 'tagName' in evt.target && evt.target.tagName === 'A') {
+        const link = evt.target as HTMLAnchorElement;
+        const href = new URL(link.href, window.location.origin);
+        if(href && href.origin === window.location.origin)
+          sessionStorage.setItem('prevent-intro', 'true');
+        else
+          sessionStorage.removeItem('prevent-intro');
+      }
+    }, false);
+  })();
+</script>

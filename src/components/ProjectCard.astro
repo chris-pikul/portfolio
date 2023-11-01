@@ -1,4 +1,12 @@
 ---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Provides a short listing for a project that links to another
+ * page.
+ */
+
 interface Props {
   uri: string;
   title?: string;
@@ -11,51 +19,51 @@ const {
   uri,
   title,
   summary,
-  tags,
-  timestamp,
+  tags = [],
 } = Astro.props;
 ---
-<a href={uri} class='article-card'><article>
-  <h4 class='article-card-title'>{ title ?? uri }</h4>
-  <div class='article-card-content'>
-    <p class='article-card-summary'>{ summary }</p>
-    <footer class='article-card-foot'>
-      <ul class='article-card-tags'>
-        { tags.map(tag => <li>{ tag }</li>)}  
-      </ul>
-      <span class='article-card-timestamp'>Published on <time datetime={timestamp}>{ (new Date(timestamp)).toLocaleString() }</time></span>
-    </footer>
-  </div>
-</article></a>
+<a href={uri} class='project-card'>
+  <article>
+    <h4 class='project-card-title'>{ title}</h4>
+    <div class='project-card-content'>
+      <p class='project-card-summary'>{ summary }</p>
+      <footer class='project-card-foot'>
+        <ul class='project-card-tags'>
+          { tags.map(tag => <li>{ tag }</li>)}  
+        </ul>
+      </footer>
+    </div>
+  </article>
+</a>
 
 <style lang="scss">
-  .article-card {
+  .project-card {
     display: block;
     margin: 1rem;
     padding: 0.5rem;
 
     background: var(--shade-100);
 
-    .article-card-title {
+    .project-card-title {
       margin-bottom: 0.5rem;
       padding: 0.25rem 0.5rem 0 0.5rem;
 
       font-size: 1.25rem;
-      line-height: 1.2em;
+      line-height: 1.25em;
 
       background: var(--shade-50);
       color: var(--shade-700);
     }
 
-    .article-card-content {
+    .project-card-content {
       padding: 0.5rem;
     }
 
-    .article-card-summary {
+    .project-card-summary {
       font-size: 1rem;
     }
 
-    .article-card-foot {
+    .project-card-foot {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
@@ -68,7 +76,7 @@ const {
 
       border-top: 1px solid var(--shade-200);
 
-      .article-card-tags {
+      .project-card-tags {
         display: flex;
         flex-flow: row wrap;
         align-items: center;
@@ -81,12 +89,6 @@ const {
 
           &:not(:first-child) { margin-left: 0.5em; }
         }
-      }
-
-      .article-card-timestamp {
-        line-height: 1.5em;
-        color: var(--shade-500);
-        text-align: right;
       }
     }
   }

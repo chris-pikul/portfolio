@@ -1,0 +1,39 @@
+---
+/**
+ * Chris Pikul's Portfolio, designed and coded by Chris Pikul.
+ * Copyright 2022 Chris Pikul. All Rights Reserved.
+ * 
+ * Index for "Projects" providing a way to list the projects
+ * available.
+ */
+import MasterLayout from '@layouts/MasterLayout.astro';
+import Title from '@components/Title.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+import type { ProjectFrontmatter } from 'src/project-frontmatter';
+
+const projects = await Astro.glob<ProjectFrontmatter>('./*.md');
+
+---
+<MasterLayout showName>
+  <section class='portrait-gap'>
+    <Title text='Projects' />
+    <p>Here's some of the projects, and mostly "ideas", that I'm working on or have done in the past.</p>
+
+    <div class='project-list'>
+      { projects.map(({ frontmatter, url }) => <ProjectCard uri={url} {...frontmatter} />) }
+    </div>
+
+
+  </section>
+</MasterLayout>
+
+<style lang="scss">
+  .project-list {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+
+    margin-top: 2rem;
+  }
+</style>
