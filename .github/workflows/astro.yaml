@@ -37,8 +37,7 @@ jobs:
           run_install: true
 
       - name: Astro Build
-        run: |
-          ${{ steps.detect-package-manager.outputs.runner }} astro build
+        run: pnpm run build
         working-directory: ${{ env.BUILD_PATH }}
   
   deploy:
