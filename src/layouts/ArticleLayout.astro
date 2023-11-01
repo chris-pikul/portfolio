@@ -18,6 +18,24 @@ const { frontmatter, headings } = Astro.props as MarkdownArticle;
 const seo:SEOProps = {
   title: `Chris Pikul - ${frontmatter.title}`,
   description: frontmatter.summary,
+  openGraph: {
+    // @ts-ignore
+    basic: {
+      title: frontmatter.title,
+      type: 'article',
+    },
+    optional: {
+      description: frontmatter.summary,
+    },
+    article: {
+      publishedTime: frontmatter.timestamp,
+      authors: ['Chris Pikul'],
+      tags: frontmatter.tags,
+    }
+  },
+  twitter: {
+    description: frontmatter.summary,
+  },
 };
 ---
 <MasterLayout seo={seo} showName>
