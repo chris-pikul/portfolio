@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import solidJs from '@astrojs/solid-js';
 
 function removeFirstHeading() {
     return function (root) {
@@ -34,13 +33,13 @@ function defaultLayoutPlugin() {
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [solidJs()],
     markdown: {
         remarkPlugins: [removeFirstHeading, defaultLayoutPlugin],
         syntaxHighlight: 'shiki',
         shikiConfig: {
             theme: 'css-variables',
         },
-        extendDefaultPlugins: true,
+        smartypants: false,
+        gfm: false,
     },
 });

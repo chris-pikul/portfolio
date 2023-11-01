@@ -1,4 +1,4 @@
-import type { MarkdownHeading, MarkdownLayoutProps } from 'astro';
+import type { MarkdownLayoutProps } from 'astro';
 
 export interface ArticleFrontmatter {
     title: string;

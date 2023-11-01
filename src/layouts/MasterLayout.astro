@@ -65,7 +65,9 @@ const thisYear = (new Date()).getFullYear();
 
   <script is:inline>document.body.classList.remove('no-js');</script>
   <script type="module" is:inline is:raw>
+    // @ts-ignore
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    // @ts-ignore
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
     const firebaseConfig = {
       apiKey: "AIzaSyAqr-6IF1-o2zHP9Sc4V88ypQr6E3aSVSc",

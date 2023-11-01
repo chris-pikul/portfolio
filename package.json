@@ -5,23 +5,21 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro check && tsc --noEmit && astro build",
+		"build": "astro check && astro build",
 		"preview": "astro preview"
 	},
 	"devDependencies": {
-		"@astrojs/solid-js": "^1.2.3",
-		"@types/node": "^20.8.9",
-		"astro": "^1.9.2",
-		"astro-seo": "^0.6.1",
+		"@types/node": "^20.8.10",
+		"astro": "^3.4.2",
+		"astro-seo": "^0.8.0",
 		"sass": "^1.69.5",
-		"solid-js": "^1.8.4",
-		"typescript": "^4.9.5",
-		"vite": "^3.2.7",
-		"vite-plugin-solid": "^2.7.2"
+		"typescript": "^5.2.2",
+		"vite": "^4.5.0"
 	},
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
+		"@astrojs/check": "^0.3.0",
 		"@babel/core": "^7.23.2"
 	}
 }
