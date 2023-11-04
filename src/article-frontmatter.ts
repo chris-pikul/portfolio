@@ -8,5 +8,6 @@ export interface ArticleFrontmatter {
     summary: string;
     timestamp: string;
     tags: Array<string>;
+    draft?: boolean;
 }
 export type MarkdownArticle = MarkdownLayoutProps<ArticleFrontmatter>;
