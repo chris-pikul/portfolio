@@ -8,7 +8,6 @@ function removeFirstHeading() {
             root.children[0] &&
             root.children[0].type === 'heading'
         ) {
-            console.log('Removing first heading', root.children[0]);
             root.children.shift();
         }
         return root;
@@ -34,7 +33,7 @@ function defaultLayoutPlugin() {
 // https://astro.build/config
 export default defineConfig({
     markdown: {
-        remarkPlugins: [removeFirstHeading, defaultLayoutPlugin],
+        remarkPlugins: [removeFirstHeading],
         syntaxHighlight: 'shiki',
         shikiConfig: {
             theme: 'css-variables',

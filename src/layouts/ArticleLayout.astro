@@ -8,45 +8,43 @@
  */
 import MasterLayout from './MasterLayout.astro';
 import Title from '@components/Title.astro';
-import TableOfContents from '@components/TableOfContents.astro';
 
 import type { Props as SEOProps } from 'astro-seo';
-import type { MarkdownArticle } from 'src/article-frontmatter';
 
-const { frontmatter, headings } = Astro.props as MarkdownArticle;
+const { title, summary, timestamp, tags, heading, subheading, part } = Astro.props as any;
 
 const seo:SEOProps = {
-  title: `Chris Pikul - ${frontmatter.title}`,
-  description: frontmatter.summary,
-  openGraph: {
+  title: `Chris Pikul - ${title}`,
+  description: summary,
+  openGraph: (title && summary) ? {
     // @ts-ignore
     basic: {
-      title: frontmatter.title,
+      title: title,
       type: 'article',
+      image: '/chris-logo-1024.png',
     },
     optional: {
-      description: frontmatter.summary,
+      description: summary,
     },
     article: {
-      publishedTime: frontmatter.timestamp,
+      publishedTime: timestamp,
       authors: ['Chris Pikul'],
-      tags: frontmatter.tags,
+      tags: tags,
     }
-  },
+  } : undefined,
   twitter: {
-    description: frontmatter.summary,
+    description: summary,
   },
 };
 ---
 <MasterLayout seo={seo} showName>
-  <Title text={frontmatter.heading ?? frontmatter.title} />
+  <Title text={heading ?? title} />
 
-  { frontmatter.subheading && (
-    <h2 class="subtitle">{ frontmatter.subheading }{ frontmatter.part && <span class="subtitle-part">Part { frontmatter.part }</span>}</h2>
+  { subheading && (
+    <h2 class="subtitle">{ subheading }{ part && <span class="subtitle-part">Part { part }</span>}</h2>
   ) }
 
   <article class='article'>
-    <TableOfContents headings={headings} />
     <slot />
   </article>
 </MasterLayout>
@@ -59,7 +57,8 @@ const seo:SEOProps = {
 
   .subtitle {
       font-size: 2rem;
-      line-height: 1.1em;
+      line-height: 1.25em;
+      margin-bottom: 0.25em;
       text-wrap: balance;
 
       .subtitle-part {

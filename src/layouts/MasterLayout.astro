@@ -347,7 +347,7 @@ const thisYear = (new Date()).getFullYear();
 
     // Bind to any link that's within our url and prevent transitions
     document.addEventListener('click', (evt:MouseEvent) => {
-      if('sessionStorage' in window && 'tagName' in evt.target && evt.target.tagName === 'A') {
+      if('sessionStorage' in window && evt.target && 'tagName' in evt.target && evt.target.tagName === 'A') {
         const link = evt.target as HTMLAnchorElement;
         const href = new URL(link.href, window.location.origin);
         if(href && href.origin === window.location.origin)

@@ -7,6 +7,10 @@ const articlesCollection = defineCollection({
         summary: z.string(),
         timestamp: z.date(),
         tags: z.array(z.string()),
+
+        heading: z.optional(z.string()),
+        subheading: z.optional(z.string()),
+        part: z.optional(z.number()),
     }),
 });
 
