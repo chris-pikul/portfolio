@@ -16,7 +16,9 @@
     "types": ["astro/client"],
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "allowJs": true
   },
   "include": [ "src/**/*" ],
   "exclude": [ "node_modules" ]

@@ -1,7 +1,7 @@
 ---
 title: "Physical Interaction in Unreal Engine 5"
 summary: "An exploration in building a physical interaction system for Unreal Engine 5, allowing for grabbing and manipulating objects in-game."
-timestamp: "2023-02-17T06:02:36Z"
+timestamp: 2023-02-17T06:02:36Z
 tags:
   - Unreal
   - UE5

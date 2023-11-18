@@ -1,7 +1,7 @@
 ---
 title: "Ruminations 1 - Back to the Future"
 summary: "History seems to repeat itself, even in development. Are we coming full circle in terms of frontend development? I think, probably!"
-timestamp: "2023-11-01T22:34:02+03:00"
+timestamp: 2023-11-01T22:34:02+03:00
 heading: Ruminations 1
 subheading: Back to the Future
 tags:

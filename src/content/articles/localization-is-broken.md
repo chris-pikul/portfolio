@@ -1,7 +1,7 @@
 ---
 title: "Localization Is Broken"
 summary: "One of the biggest pains of being a digital nomad is localization"
-timestamp: "2023-11-10T7:00:00Z"
+timestamp: 2023-11-10T7:00:00Z
 heading: Localization Is Broken
 tags:
   - Gripe

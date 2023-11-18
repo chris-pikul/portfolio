@@ -1,7 +1,7 @@
 ---
 title: "Chromaview - Development Breakdown - Part 2"
 summary: "Scaffolding and building a new app, with React as the focus for UI"
-timestamp: "2023-03-08T00:50:24Z"
+timestamp: 2023-03-08T00:50:24Z
 heading: Chromaview
 subheading: Development Breakdown
 part: 2

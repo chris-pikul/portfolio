@@ -1,12 +1,11 @@
 ---
 title: "Adonis"
-summary: "A short story"
-timestamp: "2023-11-04T16:52:26+03:00"
+summary: "I decided to write a short story. I hope you like science fiction"
+timestamp: 2023-11-04T23:15:37+03:00
 tags:
   - Short Story
   - Fiction
   - Writing
-draft: yes
 ---
 # Adonis
 

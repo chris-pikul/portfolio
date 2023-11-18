@@ -1,10 +1,7 @@
 ---
 title: "Chromaview - Development Breakdown - Part 1"
 summary: "The initial attempt at developing Chromaview, and lessons learned"
-timestamp: "2023-03-08T00:50:24Z"
-heading: Chromaview
-subheading: Development Breakdown
-part: 1
+timestamp: 2023-03-08T00:50:24Z
 tags:
   - Breakdown
   - Web
@@ -13,6 +10,9 @@ tags:
   - Media
   - Series
   - Chromaview
+heading: Chromaview
+subheading: Development Breakdown
+part: 1
 ---
 # Chromaview - Development Breakdown - Part 1
 

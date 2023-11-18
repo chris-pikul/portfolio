@@ -1,7 +1,7 @@
 ---
 title: "Chromaview - Development Breakdown - Part 3"
 summary: "Heavy-lifting with the media processor to perform our magic"
-timestamp: "2023-03-08T00:50:24Z"
+timestamp: 2023-03-08T00:50:24Z
 heading: Chromaview
 subheading: Development Breakdown
 part: 3

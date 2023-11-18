@@ -1,7 +1,7 @@
 ---
 title: "RESTful API Design"
 summary: "A simple guide for designing RESTful API endpoint paths."
-timestamp: "2023-11-10T16:30:02+03:00"
+timestamp: 2023-11-10T16:30:02+03:00
 heading: RESTful API Design
 subheading: Preparing predictable URL paths for your API
 tags:

@@ -1,22 +1,22 @@
 ---
-title: "Ruminations 2 - Resistive Degredation"
+title: "Ruminations 2 - Resistive Degradation"
 summary: "Systems feel like patchwork jobs most of the time, what if we just said no?"
-timestamp: "2023-11-06T14:30:02+03:00"
+timestamp: 2023-11-06T14:30:02+03:00
 heading: Ruminations 2
-subheading: Resistive Degredation
+subheading: Resistive Degradation
 tags:
   - Thoughts
   - Series
   - Frontend
 ---
-# Ruminations 2 - Resistive Degredation
+# Ruminations 2 - Resistive Degradation
 
 There exists a conceptual policy in web development of "Progressive Enhancement" which aims to say that the first delivered data of a webpage or application
 should be the bare minimum to start consuming it, and to add enhancements ontop of that as network requests start returning. This is usually accomplished by
 pushing most of the textual content and such first, and asynchronously loading the additional "enhancements" afterwards through JavaScript means. The goal is to
 facilitate crawler robots, accessibility, and lower-end devices from having to wait and render all the dynamic content authors really want on their sites. This
 "paradigm" reminded me of all the other systems that have some form of "backwards compatibility" as their primary development strategy. Microsoft is famous for
-this, you can see it to this day in Windows with their compatibilty layers supporting software all the way back to Win3.1 and DOS. Granted, at this point that
+this, you can see it to this day in Windows with their compatibility layers supporting software all the way back to Win3.1 and DOS. Granted, at this point that
 support layer is "iffy" at best, but it's still a driving policy that all new versions of Windows should work with software from previous versions.
 
 How do these two things relate? Progressive Enhancement and Backwards Compatibility? Not by much really. I suppose the association is the fact that older
@@ -38,15 +38,15 @@ it's those two.
 
 - Microsoft Windows is windows.
 - Linux is linux, and there is a million+ linux distributions.
-- MacOS is propriatary linux.
+- MacOS is proprietary linux.
 - Android is linux, with Java strapped ontop.
-- iOS is just smaller MacOS, still propriatary linux.
+- iOS is just smaller MacOS, still proprietary linux.
 
 And both of these kernels are duct-tape jobs over the decades. Everyone is so afraid to ditch the old for fear of loosing market share. "We can't get rid of
 SCSI drivers!? What will those 3 people left in the world do without it!?". Maybe Apple is right in some regards, sometimes you just have to drag the market
 with you into the future; kicking and screaming as they might, they'll thank us later.
 
-I dispise email. The concept is great. The protocol is old and untrustworthy and a source of so much pain and money lost in the world. Any attempts to make it
+I despise email. The concept is great. The protocol is old and untrustworthy and a source of so much pain and money lost in the world. Any attempts to make it
 secure for the common day usage is just "optional" enhancements. Most SMTP servers will still respond just fine to unsecure connections for the sake of Backwards
 Compatibility. And so, the services and corporations decided they would all do their own patchwork jobs. SMTP, SMTPS, IMAP, IMAPS, POP3, etc. etc.
 
@@ -54,24 +54,24 @@ TCP get's the job done for communicating over networks reliably. It's a bit, ver
 like the QWIK protocol (thanks Google) which rides ontop of UDP. But either way, that's all just riding on HTTP 1.0 protocol (from the late 80's).
 
 Both Windows and Linux suffer from desktop environments built on top of UI protocols of the mid to early 90's. Very verbose and tricky to work with. Most have
-to reach for one of the 3, or is it 4, Windows APIs to work on there. Linux got X, and then a million flavours ontop of that. This fustration is really what led
-to things like Electron for bringing web development onto the desktop side. Otherwise you'd have to reach for Qt which is a bloated propriatery solution.
+to reach for one of the 3, or is it 4, Windows APIs to work on there. Linux got X, and then a million flavours ontop of that. This frustration is really what led
+to things like Electron for bringing web development onto the desktop side. Otherwise you'd have to reach for Qt which is a bloated proprietary solution.
 
 ## What Do I Want?
 
 I want to trim down kernels to the bare necessities to run on current generation hardware. That's where the title of this article comes in. "Resistive
-Degregation". Let's ditch all the old protocols and support layers and stick with the newest and make the most of that. Anything deemed as backwards compatible
-should be added on-top as an emulation layer, and most importantly that the kernel "resists" adding such degregations on purpose. It is not a kitchen sink kernel
-that packages the ability to do everything, everywhere. It is purpose built for general user's needs targetting current and near future hardware. 64-bit registers,
+Degradation". Let's ditch all the old protocols and support layers and stick with the newest and make the most of that. Anything deemed as backwards compatible
+should be added on-top as an emulation layer, and most importantly that the kernel "resists" adding such degradations on purpose. It is not a kitchen sink kernel
+that packages the ability to do everything, everywhere. It is purpose built for general user's needs targeting current and near future hardware. 64-bit registers,
 no support for 32-bit. ARM might be necessary for mobile devices, but not interested in any other out-of-norm architectures. I want to get rid of all the antiquated
-protocols that are probably un-neccessary. No SMTP support, no archaic driver and file-system support. Hell, I'll even get rid of the TTY if I can.
+protocols that are probably un-necessary. No SMTP support, no archaic driver and file-system support. Hell, I'll even get rid of the TTY if I can.
 
 GUI is a big focus of mine these days. Frontend web is a disaster zone of competing standards and frameworks on frameworks. I know this, we all know this. But
 at least HTML gave us the building blocks to build document based applications. I suggest an OS that prioritizes just that, applications designed with internet
 usage in mind. That doesn't mean just packing chromium into a linux distro, I mean an actual application protocol that takes the best ideas from web and secures
 them for desktop and tablet based usage. Applications could be accessed via web addresses instead of installers. User interface rendering would be vector based
 compositing instead of pixel based. User authentication could come directly from OS access level. Let's go even more extreme and say you could access "your"
-dekstop from any other connected device in the world. 
+desktop from any other connected device in the world. 
 
 ## Let's Do This
 
