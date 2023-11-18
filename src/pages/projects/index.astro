@@ -21,7 +21,7 @@ const projects = await Astro.glob<ProjectFrontmatter>('./*.md');
     <p>Here's some of the projects, and mostly "ideas", that I'm working on or have done in the past.</p>
 
     <div class='project-list'>
-      { projects.map(({ frontmatter, url }) => <ProjectCard uri={url} {...frontmatter} />) }
+      { projects.map(({ frontmatter, url }) => <ProjectCard uri={url as string} {...frontmatter} />) }
     </div>
 
 
