@@ -210,6 +210,13 @@ declare module 'astro:content' {
   collection: "articles";
   data: InferEntrySchema<"articles">
 } & { render(): Render[".md"] };
+"piktv-1.md": {
+	id: "piktv-1.md";
+  slug: "piktv-1";
+  body: string;
+  collection: "articles";
+  data: InferEntrySchema<"articles">
+} & { render(): Render[".md"] };
 "restful-api-design.md": {
 	id: "restful-api-design.md";
   slug: "restful-api-design";
