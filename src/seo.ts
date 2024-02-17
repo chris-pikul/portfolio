@@ -2,14 +2,22 @@
 import type { Props as SEOProps } from 'astro-seo';
 
 function overrideObjects<T extends Object>(a: T, b: Partial<T>): T {
-    const obj = { ...a };
+    const obj = { ...a } as T;
 
     for (const key in b) {
         if (typeof b[key] === 'object') {
-            if (Array.isArray(b[key])) obj[key] = [...b[key]];
-            else obj[key] = overrideObjects(obj[key], b[key]);
-        } else {
-            obj[key] = b[key];
+            if (Array.isArray(b[key]))
+                obj[key] = [...(b[key] as Array<unknown>)] as T[Extract<
+                    keyof T,
+                    string
+                >];
+            else
+                obj[key] = overrideObjects(
+                    obj[key] as Object,
+                    b[key] as Object,
+                ) as T[Extract<keyof T, string>];
+        } else if (typeof b[key] !== 'undefined') {
+            obj[key] = b[key] as T[Extract<keyof T, string>];
         }
     }
 
@@ -23,8 +31,8 @@ function overrideObjects<T extends Object>(a: T, b: Partial<T>): T {
  * @param overides Optional custom SEO properties
  * @returns New properties object with reasonable defaults applied
  */
-export const MakeSEO = (overrides: SEOProps = {}): SEOProps =>
-    overrideObjects(
+export const MakeSEO = (overrides: Partial<SEOProps> = {}): SEOProps =>
+    overrideObjects<SEOProps>(
         {
             title: 'Chris Pikul',
             description: 'Portfolio site for Chris Pikul, developer for hire',
