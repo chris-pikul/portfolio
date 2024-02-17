@@ -3,7 +3,7 @@ title: "Linux For Your TV - Part 1"
 summary: "I wanted to build a custom Linux distro specifically for use on a Raspberry PI for multimedia usage. Here is how it went..."
 timestamp: 2023-12-16T22:41:49+03:00
 heading: Linux For Your TV
-subheading: Building a custom linux distro - Part 1
+subheading: Part 1 - Building a custom linux distro
 tags:
   - Linux
   - OS
@@ -131,7 +131,7 @@ GRUB_DEFAULT=0
 GRUB_TIMEOUT=0
 
 # Set the kernel parameters
-GRUB_CMDLINE_LINUX_DEFAULT="ro quiet loglevel=3 udev.log-priority=3 splash $vt_handoff"
+GRUB_CMDLINE_LINUX_DEFAULT="ro quiet loglevel=3 udev.log-priority=3 splash"
 
 # Enable the graphics mode from the start
 GRUB_GFXMODE=1024x768
@@ -155,9 +155,6 @@ it silences an additional boot message I was getting about spectre vulnerabiliti
 This is VirtualBox so I don't care about those messages, and on a TV I also
 would not care. So this gets rid of more messages.
 - `splash` tells GRUB to use a background image.
-- `$vt_handoff` is here because I read somewhere that it helps the handoff process
-when changing graphics mode to the next splash system. I don't know if it's
-needed, but it didn't break anything. [Update: It's Ubuntu specific, not needed]
 
 Also to note is the last line about `GRUB_GFXPAYLOAD_LINUX` which is again
 supposed to help with the mode switching.
@@ -232,7 +229,7 @@ splash so that was OK as well. I just chose a random built-in theme to get start
 with the process.
 
 The handoff between GRUB and the new Plymouth splash was a bit slow, so I had
-read to do some tweaks to GRUB which I have already mentioned with the `$vt_handoff`
+read to do some tweaks to GRUB which I have already mentioned with the `GRUB_GFXPAYLOAD_LINUX`
 and all. An additional change was made to the plymouth configuration at
 `/etc/plymouth/plymouthd.conf`
 

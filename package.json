@@ -9,18 +9,18 @@
 		"preview": "astro preview"
 	},
 	"devDependencies": {
-		"@types/node": "^20.8.10",
-		"astro": "^3.4.2",
+		"@types/node": "^20.11.19",
+		"astro": "^4.4.0",
 		"astro-seo": "^0.8.0",
-		"sass": "^1.69.5",
-		"typescript": "^5.2.2",
-		"vite": "^4.5.0"
+		"sass": "^1.71.0",
+		"typescript": "^5.3.3",
+		"vite": "^4.5.2"
 	},
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
-		"@astrojs/check": "^0.3.0",
-		"@astrojs/rss": "^3.0.0",
-		"@babel/core": "^7.23.2"
+		"@astrojs/check": "^0.5.4",
+		"@astrojs/rss": "^4.0.5",
+		"@babel/core": "^7.23.9"
 	}
 }
