@@ -131,91 +131,114 @@ declare module 'astro:content' {
   slug: "adonis";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "chromaview-breakdown-part-1.md": {
 	id: "chromaview-breakdown-part-1.md";
   slug: "chromaview-breakdown-part-1";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "chromaview-breakdown-part-2.md": {
 	id: "chromaview-breakdown-part-2.md";
   slug: "chromaview-breakdown-part-2";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "chromaview-breakdown-part-3.md": {
 	id: "chromaview-breakdown-part-3.md";
   slug: "chromaview-breakdown-part-3";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "kismet-intro.md": {
 	id: "kismet-intro.md";
   slug: "kismet-intro";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "localization-is-broken.md": {
 	id: "localization-is-broken.md";
   slug: "localization-is-broken";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "piktv-1.md": {
 	id: "piktv-1.md";
   slug: "piktv-1";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "piktv-2.md": {
 	id: "piktv-2.md";
   slug: "piktv-2";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "restful-api-design.md": {
 	id: "restful-api-design.md";
   slug: "restful-api-design";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "ruminations-1.md": {
 	id: "ruminations-1.md";
   slug: "ruminations-1";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "ruminations-2.md": {
 	id: "ruminations-2.md";
   slug: "ruminations-2";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "ue5-physical-iteraction-cpp.md": {
 	id: "ue5-physical-iteraction-cpp.md";
   slug: "ue5-physical-iteraction-cpp";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
 } & { render(): Render[".md"] };
 "web-font-optimization.md": {
 	id: "web-font-optimization.md";
   slug: "web-font-optimization";
   body: string;
   collection: "articles";
-  data: InferEntrySchema<"articles">
+  data: any
+} & { render(): Render[".md"] };
+};
+"projects": {
+"chromaview.md": {
+	id: "chromaview.md";
+  slug: "chromaview";
+  body: string;
+  collection: "projects";
+  data: any
+} & { render(): Render[".md"] };
+"htmg.md": {
+	id: "htmg.md";
+  slug: "htmg";
+  body: string;
+  collection: "projects";
+  data: any
+} & { render(): Render[".md"] };
+"tacklebox.md": {
+	id: "tacklebox.md";
+  slug: "tacklebox";
+  body: string;
+  collection: "projects";
+  data: any
 } & { render(): Render[".md"] };
 };
 
@@ -227,5 +250,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("./../src/content/config.js");
+	export type ContentConfig = never;
 }

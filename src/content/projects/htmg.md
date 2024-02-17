@@ -1,7 +1,7 @@
 ---
 title: "HTMG - Go package for HTML generation"
 summary: "Efficient HTML/XML generation package for Go allowing quick development of documents"
-timestamp: "2023-11-02T22:41:05+03:00"
+timestamp: 2023-11-02T22:41:05+03:00
 heading: "Hyper-Text Markup Generator"
 subheading: "Efficient HTML/XML generation package for Go"
 tags:

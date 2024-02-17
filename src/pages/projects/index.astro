@@ -6,13 +6,14 @@
  * Index for "Projects" providing a way to list the projects
  * available.
  */
+import { getCollection } from 'astro:content';
 import MasterLayout from '@layouts/MasterLayout.astro';
 import Title from '@components/Title.astro';
 import ProjectCard from '@components/ProjectCard.astro';
 
-import type { ProjectFrontmatter } from 'src/project-frontmatter';
-
-const projects = await Astro.glob<ProjectFrontmatter>('./*.md');
+const projects = (await getCollection('projects')).sort((a, b) => {
+  return a.data.title.localeCompare(b.data.title);
+});
 
 ---
 <MasterLayout showName>
@@ -21,9 +22,8 @@ const projects = await Astro.glob<ProjectFrontmatter>('./*.md');
     <p>Here's some of the projects, and mostly "ideas", that I'm working on or have done in the past.</p>
 
     <div class='project-list'>
-      { projects.map(({ frontmatter, url }) => <ProjectCard uri={url as string} {...frontmatter} />) }
+      { projects.map(({ slug, data }) => <ProjectCard uri={`/projects/${slug}`} {...data as any} />) }
     </div>
-
 
   </section>
 </MasterLayout>
